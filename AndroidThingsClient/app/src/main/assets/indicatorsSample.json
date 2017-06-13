@@ -1,0 +1,50 @@
+{
+  "temperatureIndicators" : [ {
+    "qrCodeId" : "76as76fasfsa7fas7ef",
+    "value" : "23",
+    "time" : "124453535353",
+    "type" : "Warm"
+  }, {
+    "qrCodeId" : "76as76fasfsa7fas7ef",
+    "value" : "13",
+    "time" : "1244535395855",
+    "type" : "Cold"
+  }, {
+    "qrCodeId" : "76as76fasfsa7fas7ef",
+    "value" : "33",
+    "time" : "1244535399999",
+    "type" : "Very hot"
+  }] ,
+  "pressureIndicators" : [ {
+    "qrCodeId" : "76as76fasfsa7fas7ef",
+    "value" : "10",
+    "time" : "124453535353",
+    "type" : "Low"
+  }, {
+    "qrCodeId" : "76as76fasfsa7fas7ef",
+    "value" : "15",
+    "time" : "1244535395855",
+    "type" : "Normal"
+  }, {
+    "qrCodeId" : "76as76fasfsa7fas7ef",
+    "value" : "30",
+    "time" : "1244535399999",
+    "type" : "High"
+  }],
+  "humidityIndicators" : [ {
+    "qrCodeId" : "76as76fasfsa7fas7ef",
+    "value" : "30",
+    "time" : "124453535353",
+    "type" : "Low"
+  }, {
+    "qrCodeId" : "76as76fasfsa7fas7ef",
+    "value" : "60",
+    "time" : "1244535395855",
+    "type" : "Normal"
+  }, {
+    "qrCodeId" : "76as76fasfsa7fas7ef",
+    "value" : "90",
+    "time" : "1244535399999",
+    "type" : "High"
+  }]
+}
