@@ -1,4 +1,5 @@
 apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
 
 android {
     compileSdkVersion 25
@@ -24,7 +25,16 @@ dependencies {
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
+
+    // Kotlin
+    compile "org.jetbrains.kotlin:kotlin-stdlib:1.0.6"
+
+    // Support
     compile 'com.android.support:appcompat-v7:25.3.1'
+
+    // UI
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
+
+    // Test
     testCompile 'junit:junit:4.12'
 }
