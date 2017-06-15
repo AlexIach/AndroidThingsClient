@@ -3,6 +3,7 @@
     package="com.example.androidthingsclient">
 
     <application
+        android:name=".application.AndroidThingsClientApp"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -17,7 +18,7 @@
         <activity android:name=".MainActivity"></activity>
 
         <activity
-            android:name=".view.SplashActivity"
+            android:name=".view.splashScreen.SplashActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -26,7 +27,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".view.QRCodeActivity"
+            android:name=".view.qrCodeScreen.QRCodeActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -1,4 +1,4 @@
-package com.example.androidthingsclient.view;
+package com.example.androidthingsclient.view.qrCodeScreen;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,12 +8,15 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.airbnb.lottie.LottieAnimationView;
+import com.example.androidthingsclient.Injector;
 import com.example.androidthingsclient.MainActivity;
 import com.example.androidthingsclient.R;
 import com.example.androidthingsclient.util.SharedPrefUtil;
 import com.example.androidthingsclient.util.StringUtil;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
+
+import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -26,8 +29,11 @@ public class QRCodeActivity extends AppCompatActivity {
     @BindView(R.id.buttonScan)
     Button buttonScan;
 
-    private StringUtil stringUtil;
-    private SharedPrefUtil sharedPrefUtil;
+    @Inject
+    StringUtil stringUtil;
+
+    @Inject
+    SharedPrefUtil sharedPrefUtil;
 
     @OnClick(R.id.buttonScan)
     public void scanQRCode(View view) {
@@ -47,8 +53,8 @@ public class QRCodeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_qrcode);
         ButterKnife.bind(this);
 
-        stringUtil = new StringUtil(); // TODO Dependency injection
-        sharedPrefUtil = new SharedPrefUtil(); // TODO Dependency injection
+        Injector.INSTANCE.initQRCodeComponent(this);
+        Injector.INSTANCE.getQrCodeActivityComponent().inject(this);
     }
 
     @Override
