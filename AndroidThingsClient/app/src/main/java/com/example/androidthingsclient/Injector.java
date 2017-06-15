@@ -4,6 +4,10 @@ import com.example.androidthingsclient.application.AndroidThingsClientApp;
 import com.example.androidthingsclient.application.builder.AndroidThingsClientComponent;
 import com.example.androidthingsclient.application.builder.AndroidThingsClientModule;
 import com.example.androidthingsclient.application.builder.DaggerAndroidThingsClientComponent;
+import com.example.androidthingsclient.view.mainScreen.MainActivity;
+import com.example.androidthingsclient.view.mainScreen.builder.DaggerMainActivityComponent;
+import com.example.androidthingsclient.view.mainScreen.builder.MainActivityComponent;
+import com.example.androidthingsclient.view.mainScreen.builder.MainActivityModule;
 import com.example.androidthingsclient.view.qrCodeScreen.QRCodeActivity;
 import com.example.androidthingsclient.view.qrCodeScreen.builder.DaggerQRCodeActivityComponent;
 import com.example.androidthingsclient.view.qrCodeScreen.builder.QRCodeActivityComponent;
@@ -24,6 +28,7 @@ public enum Injector {
     AndroidThingsClientComponent androidThingsClientComponent;
     SplashActivityComponent splashActivityComponent;
     QRCodeActivityComponent qrCodeActivityComponent;
+    MainActivityComponent mainActivityComponent;
 
     public void initAndroidThingsClientComponent(AndroidThingsClientApp androidThingsClientApp) {
         if (androidThingsClientComponent == null) {
@@ -51,6 +56,15 @@ public enum Injector {
         }
     }
 
+    public void initMainActivityComponent(MainActivity mainActivity) {
+        if (mainActivityComponent == null) {
+            mainActivityComponent = DaggerMainActivityComponent.builder()
+                    .mainActivityModule(new MainActivityModule(mainActivity))
+                    .androidThingsClientComponent(androidThingsClientComponent)
+                    .build();
+        }
+    }
+
 
     public AndroidThingsClientComponent getAndroidThingsClientComponent() {
         return androidThingsClientComponent;
@@ -62,5 +76,9 @@ public enum Injector {
 
     public QRCodeActivityComponent getQrCodeActivityComponent() {
         return qrCodeActivityComponent;
+    }
+
+    public MainActivityComponent getMainActivityComponent() {
+        return mainActivityComponent;
     }
 }

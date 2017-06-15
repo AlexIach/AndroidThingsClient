@@ -3,6 +3,7 @@
     <string name="android_things">Android Thigs</string>
     <string name="scan_your_raspberry">Scan your Raspberry</string>
     <string name="QR_error_message">To continue using app you need to scan QR code.</string>
+    <string name="common_message">We have some problem please try again.</string>
     <string name="QR_help_message">Focus QR code and wait until app scans it.</string>
     <string name="volatire_font">"fonts/volatire.ttf"</string>
 </resources>

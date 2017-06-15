@@ -36,4 +36,5 @@ public class AndroidThingsClientModule {
     public SharedPrefUtil provideSharedPrefUtil() {
         return new SharedPrefUtil();
     }
+
 }

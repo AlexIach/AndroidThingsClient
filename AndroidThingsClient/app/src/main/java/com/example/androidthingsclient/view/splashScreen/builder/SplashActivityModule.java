@@ -1,5 +1,6 @@
 package com.example.androidthingsclient.view.splashScreen.builder;
 
+import com.example.androidthingsclient.view.common.BaseModule;
 import com.example.androidthingsclient.view.splashScreen.SplashActivity;
 
 import dagger.Module;
@@ -9,11 +10,12 @@ import dagger.Module;
  */
 
 @Module
-public class SplashActivityModule {
+public class SplashActivityModule extends BaseModule<SplashActivity> {
 
     private SplashActivity splashActivity;
 
     public SplashActivityModule(SplashActivity splashActivity) {
+        super(splashActivity);
         this.splashActivity = splashActivity;
     }
 

@@ -1,4 +1,4 @@
-package com.example.androidthingsclient.common;
+package com.example.androidthingsclient.util;
 
 import android.content.Context;
 import android.content.Intent;
@@ -13,7 +13,7 @@ import android.support.v7.app.AppCompatActivity;
 import javax.inject.Inject;
 
 /**
- * Created by aiachimov on 4/28/17.
+ * Created by aiachimov on 6/15/17.
  */
 
 public class ScreenNavigationManager {

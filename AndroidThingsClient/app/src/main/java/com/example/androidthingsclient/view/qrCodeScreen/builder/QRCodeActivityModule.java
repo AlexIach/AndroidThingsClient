@@ -1,5 +1,6 @@
 package com.example.androidthingsclient.view.qrCodeScreen.builder;
 
+import com.example.androidthingsclient.view.common.BaseModule;
 import com.example.androidthingsclient.view.qrCodeScreen.QRCodeActivity;
 
 import dagger.Module;
@@ -9,11 +10,12 @@ import dagger.Module;
  */
 
 @Module
-public class QRCodeActivityModule {
+public class QRCodeActivityModule extends BaseModule<QRCodeActivity> {
 
     private QRCodeActivity qrCodeActivity;
 
     public QRCodeActivityModule(QRCodeActivity qrCodeActivity) {
+        super(qrCodeActivity);
         this.qrCodeActivity = qrCodeActivity;
     }
 }

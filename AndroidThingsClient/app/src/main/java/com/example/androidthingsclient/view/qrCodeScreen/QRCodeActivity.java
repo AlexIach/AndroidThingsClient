@@ -9,10 +9,11 @@ import android.widget.Toast;
 
 import com.airbnb.lottie.LottieAnimationView;
 import com.example.androidthingsclient.Injector;
-import com.example.androidthingsclient.MainActivity;
 import com.example.androidthingsclient.R;
+import com.example.androidthingsclient.util.ScreenNavigationManager;
 import com.example.androidthingsclient.util.SharedPrefUtil;
 import com.example.androidthingsclient.util.StringUtil;
+import com.example.androidthingsclient.view.mainScreen.MainActivity;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
@@ -31,9 +32,10 @@ public class QRCodeActivity extends AppCompatActivity {
 
     @Inject
     StringUtil stringUtil;
-
     @Inject
     SharedPrefUtil sharedPrefUtil;
+    @Inject
+    ScreenNavigationManager screenNavigationManager;
 
     @OnClick(R.id.buttonScan)
     public void scanQRCode(View view) {
@@ -64,10 +66,12 @@ public class QRCodeActivity extends AppCompatActivity {
             if (intentResult.getContents() == null) {
                 Toast.makeText(this, stringUtil.getStringFromRes(this, R.string.QR_error_message), Toast.LENGTH_SHORT).show();
             } else {
-                sharedPrefUtil.saveQRPreference(this, SharedPrefUtil.QR_CODE_ID_KEY_SHARED_PREF, intentResult.getContents());
-                Intent i = new Intent(getBaseContext(), MainActivity.class);
-                startActivity(i);
-                finish();
+                if (sharedPrefUtil.saveQRPreference(this, SharedPrefUtil.QR_CODE_ID_KEY_SHARED_PREF, intentResult.getContents())) {
+                    screenNavigationManager.switchActivity(this, MainActivity.class);
+                    finish();
+                } else {
+                    Toast.makeText(this, stringUtil.getStringFromRes(this, R.string.common_message), Toast.LENGTH_SHORT).show();
+                }
             }
         } else {
             super.onActivityResult(requestCode, resultCode, data);

@@ -5,9 +5,10 @@ import android.content.Intent;
 import com.badoo.mobile.util.WeakHandler;
 import com.daimajia.androidanimations.library.Techniques;
 import com.example.androidthingsclient.Injector;
-import com.example.androidthingsclient.MainActivity;
+import com.example.androidthingsclient.view.mainScreen.MainActivity;
 import com.example.androidthingsclient.R;
 import com.example.androidthingsclient.util.Constants;
+import com.example.androidthingsclient.util.ScreenNavigationManager;
 import com.example.androidthingsclient.util.SharedPrefUtil;
 import com.example.androidthingsclient.util.StringUtil;
 import com.example.androidthingsclient.view.qrCodeScreen.QRCodeActivity;
@@ -24,6 +25,8 @@ public class SplashActivity extends AwesomeSplash {
     StringUtil stringUtil;
     @Inject
     SharedPrefUtil sharedPrefUtil;
+    @Inject
+    ScreenNavigationManager screenNavigationManager;
 
     @Override
     public void initSplash(ConfigSplash configSplash) {

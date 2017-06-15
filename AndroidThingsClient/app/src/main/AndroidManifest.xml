@@ -15,7 +15,7 @@
         <uses-feature android:name="android.hardware.camera" />
         <uses-feature android:name="android.hardware.camera.autofocus" />
 
-        <activity android:name=".MainActivity"></activity>
+        <activity android:name=".view.mainScreen.MainActivity"></activity>
 
         <activity
             android:name=".view.splashScreen.SplashActivity"
