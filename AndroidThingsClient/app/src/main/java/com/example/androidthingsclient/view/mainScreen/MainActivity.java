@@ -2,7 +2,6 @@ package com.example.androidthingsclient.view.mainScreen;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.widget.Toast;
 
 import com.example.androidthingsclient.Injector;
 import com.example.androidthingsclient.R;

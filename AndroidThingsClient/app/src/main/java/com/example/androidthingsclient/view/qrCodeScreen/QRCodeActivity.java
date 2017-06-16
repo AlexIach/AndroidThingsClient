@@ -14,6 +14,7 @@ import com.example.androidthingsclient.util.ScreenNavigationManager;
 import com.example.androidthingsclient.util.SharedPrefUtil;
 import com.example.androidthingsclient.util.StringUtil;
 import com.example.androidthingsclient.view.mainScreen.MainActivity;
+import com.example.androidthingsclient.view.qrCodeScreen.core.presenter.QRCodeActivityPresenter;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
@@ -23,7 +24,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class QRCodeActivity extends AppCompatActivity {
+public class QRCodeActivity extends AppCompatActivity implements QRCodeActivityPresenter.QRCodeCallBack {
 
     @BindView(R.id.lottie_animation_view)
     LottieAnimationView lottieAnimationView;
@@ -33,9 +34,9 @@ public class QRCodeActivity extends AppCompatActivity {
     @Inject
     StringUtil stringUtil;
     @Inject
-    SharedPrefUtil sharedPrefUtil;
-    @Inject
     ScreenNavigationManager screenNavigationManager;
+    @Inject
+    QRCodeActivityPresenter qrCodeActivityPresenter;
 
     @OnClick(R.id.buttonScan)
     public void scanQRCode(View view) {
@@ -57,6 +58,8 @@ public class QRCodeActivity extends AppCompatActivity {
 
         Injector.INSTANCE.initQRCodeComponent(this);
         Injector.INSTANCE.getQrCodeActivityComponent().inject(this);
+
+        qrCodeActivityPresenter.setUpCallback(this);
     }
 
     @Override
@@ -66,16 +69,23 @@ public class QRCodeActivity extends AppCompatActivity {
             if (intentResult.getContents() == null) {
                 Toast.makeText(this, stringUtil.getStringFromRes(this, R.string.QR_error_message), Toast.LENGTH_SHORT).show();
             } else {
-                if (sharedPrefUtil.saveQRPreference(this, SharedPrefUtil.QR_CODE_ID_KEY_SHARED_PREF, intentResult.getContents())) {
-                    screenNavigationManager.switchActivity(this, MainActivity.class);
-                    finish();
-                } else {
-                    Toast.makeText(this, stringUtil.getStringFromRes(this, R.string.common_message), Toast.LENGTH_SHORT).show();
-                }
+                qrCodeActivityPresenter.saveQrCode(this, SharedPrefUtil.QR_CODE_ID_KEY_SHARED_PREF, intentResult.getContents());
             }
         } else {
             super.onActivityResult(requestCode, resultCode, data);
         }
     }
 
+    @Override
+    public void onQRCodeSaved(boolean isSaved) {
+        if (isSaved) {
+            screenNavigationManager.switchActivity(this, MainActivity.class);
+            finish();
+        }
+    }
+
+    @Override
+    public void onFailedQRCodeSave(String errorMessage) {
+        Toast.makeText(this, errorMessage, Toast.LENGTH_SHORT).show();
+    }
 }

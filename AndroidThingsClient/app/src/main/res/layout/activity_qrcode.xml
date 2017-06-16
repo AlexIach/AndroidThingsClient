@@ -12,8 +12,7 @@
         android:layout_height="wrap_content"
         app:lottie_fileName="lottiepreview_qr.json"
         app:lottie_loop="true"
-        app:lottie_autoPlay="true"
-       />
+        app:lottie_autoPlay="true" />
 
     <Button
         android:id="@+id/buttonScan"
