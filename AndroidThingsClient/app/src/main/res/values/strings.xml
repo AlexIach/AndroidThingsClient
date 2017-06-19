@@ -6,4 +6,9 @@
     <string name="common_message">We have some problem please try again.</string>
     <string name="QR_help_message">Focus QR code and wait until app scans it.</string>
     <string name="volatire_font">"fonts/volatire.ttf"</string>
+    <string name="tap_to_check">"Check"</string>
+    <string name="temperature">Temperature</string>
+    <string name="humidity">Humidity</string>
+    <string name="graphics">Graphics</string>
+    <string name="pressure">Pressure</string>
 </resources>

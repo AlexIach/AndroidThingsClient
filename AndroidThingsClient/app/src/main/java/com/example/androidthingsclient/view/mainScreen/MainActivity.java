@@ -1,26 +1,132 @@
 package com.example.androidthingsclient.view.mainScreen;
 
 import android.os.Bundle;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 
 import com.example.androidthingsclient.Injector;
 import com.example.androidthingsclient.R;
 import com.example.androidthingsclient.util.ScreenNavigationManager;
+import com.example.androidthingsclient.util.StringUtil;
+import com.example.androidthingsclient.view.mainScreen.core.adapters.MainPagerAdapter;
+
+import java.util.ArrayList;
 
 import javax.inject.Inject;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import devlight.io.library.ntb.NavigationTabBar;
 
 public class MainActivity extends AppCompatActivity {
 
     @Inject
     ScreenNavigationManager screenNavigationManager;
+    @Inject
+    MainPagerAdapter mainPagerAdapter;
+    @Inject
+    StringUtil stringUtil;
+
+    @BindView(R.id.vp_horizontal_ntb)
+    ViewPager viewPager;
+    @BindView(R.id.ntb_horizontal)
+    NavigationTabBar navigationTabBar;
+    @BindView(R.id.toolbar)
+    Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        ButterKnife.bind(this);
 
         Injector.INSTANCE.initMainActivityComponent(this);
         Injector.INSTANCE.getMainActivityComponent().inject(this);
 
+        initUI();
+
+    }
+
+    private void initUI() {
+        setSupportActionBar(toolbar);
+        viewPager.setAdapter(mainPagerAdapter);
+
+        final ArrayList<NavigationTabBar.Model> models = new ArrayList<>();
+
+        models.add(
+                new NavigationTabBar.Model.Builder(
+                        getResources().getDrawable(R.drawable.ic_first),
+                        getResources().getColor(R.color.primary))
+                        .selectedIcon(getResources().getDrawable(R.drawable.ic_sixth))
+                        .title(stringUtil.getStringFromRes(this, R.string.temperature))
+                        .badgeTitle(stringUtil.getStringFromRes(this, R.string.tap_to_check))
+                        .build()
+        );
+        models.add(
+                new NavigationTabBar.Model.Builder(
+                        getResources().getDrawable(R.drawable.ic_second),
+                        getResources().getColor(R.color.primary))
+                        .selectedIcon(getResources().getDrawable(R.drawable.ic_eighth))
+                        .title(stringUtil.getStringFromRes(this, R.string.humidity))
+                        .badgeTitle(stringUtil.getStringFromRes(this, R.string.tap_to_check))
+                        .build()
+        );
+        models.add(
+                new NavigationTabBar.Model.Builder(
+                        getResources().getDrawable(R.drawable.ic_third),
+                        getResources().getColor(R.color.primary))
+                        .selectedIcon(getResources().getDrawable(R.drawable.ic_seventh))
+                        .title(stringUtil.getStringFromRes(this, R.string.pressure))
+                        .badgeTitle(stringUtil.getStringFromRes(this, R.string.tap_to_check))
+                        .build()
+        );
+        models.add(
+                new NavigationTabBar.Model.Builder(
+                        getResources().getDrawable(R.drawable.ic_fourth),
+                        getResources().getColor(R.color.primary))
+                        .selectedIcon(getResources().getDrawable(R.drawable.ic_eighth))
+                        .title(stringUtil.getStringFromRes(this, R.string.graphics))
+                        .badgeTitle(stringUtil.getStringFromRes(this, R.string.tap_to_check))
+                        .build()
+        );
+
+        navigationTabBar.setModels(models);
+        navigationTabBar.setViewPager(viewPager, 0);
+        navigationTabBar.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(final int position, final float positionOffset, final int positionOffsetPixels) {
+                //NOT IMPLEMENTED
+            }
+
+            @Override
+            public void onPageSelected(final int position) {
+                navigationTabBar.getModels().get(position).hideBadge();
+            }
+
+            @Override
+            public void onPageScrollStateChanged(final int state) {
+                //NOT IMPLEMENTED
+            }
+        });
+
+        navigationTabBar.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                for (int i = 0; i < navigationTabBar.getModels().size(); i++) {
+                    final NavigationTabBar.Model model = navigationTabBar.getModels().get(i);
+                    navigationTabBar.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            model.showBadge();
+                        }
+                    }, i * 100);
+                }
+            }
+        }, 500);
+    }
+
+    public void setActionBarTitle(String title) {
+        getSupportActionBar().setTitle(title);
     }
 }
