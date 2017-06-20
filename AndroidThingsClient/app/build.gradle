@@ -61,4 +61,9 @@ dependencies {
     // QR
     compile group: 'com.google.zxing', name: 'core', version: '3.3.0'
     compile 'com.journeyapps:zxing-android-embedded:3.2.0@aar'
+    //Firebase
+    compile ('com.firebaseui:firebase-ui:1.2.0') {
+        exclude group: 'com.android.support', module: 'appcompat'
+    }
 }
+apply plugin: 'com.google.gms.google-services'

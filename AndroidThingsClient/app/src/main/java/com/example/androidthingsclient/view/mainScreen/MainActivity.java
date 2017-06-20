@@ -41,11 +41,11 @@ public class MainActivity extends AppCompatActivity {
         Injector.INSTANCE.initMainActivityComponent(this);
         Injector.INSTANCE.getMainActivityComponent().inject(this);
 
-        initUI();
+        initNavigationTabBar();
 
     }
 
-    private void initUI() {
+    private void initNavigationTabBar() {
         viewPager.setAdapter(mainPagerAdapter);
 
         final ArrayList<NavigationTabBar.Model> models = new ArrayList<>();
