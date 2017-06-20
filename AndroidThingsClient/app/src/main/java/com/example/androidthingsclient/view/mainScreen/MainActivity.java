@@ -3,7 +3,6 @@ package com.example.androidthingsclient.view.mainScreen;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 
 import com.example.androidthingsclient.Injector;
 import com.example.androidthingsclient.R;
@@ -32,8 +31,6 @@ public class MainActivity extends AppCompatActivity {
     ViewPager viewPager;
     @BindView(R.id.ntb_horizontal)
     NavigationTabBar navigationTabBar;
-    @BindView(R.id.toolbar)
-    Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,43 +46,42 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initUI() {
-        setSupportActionBar(toolbar);
         viewPager.setAdapter(mainPagerAdapter);
 
         final ArrayList<NavigationTabBar.Model> models = new ArrayList<>();
 
         models.add(
                 new NavigationTabBar.Model.Builder(
-                        getResources().getDrawable(R.drawable.ic_first),
-                        getResources().getColor(R.color.primary))
-                        .selectedIcon(getResources().getDrawable(R.drawable.ic_sixth))
+                        getResources().getDrawable(R.drawable.oil_temperature),
+                        getResources().getColor(R.color.primary_dark))
+                        .selectedIcon(getResources().getDrawable(R.drawable.temperature_celsius))
                         .title(stringUtil.getStringFromRes(this, R.string.temperature))
                         .badgeTitle(stringUtil.getStringFromRes(this, R.string.tap_to_check))
                         .build()
         );
         models.add(
                 new NavigationTabBar.Model.Builder(
-                        getResources().getDrawable(R.drawable.ic_second),
-                        getResources().getColor(R.color.primary))
-                        .selectedIcon(getResources().getDrawable(R.drawable.ic_eighth))
+                        getResources().getDrawable(R.drawable.water),
+                        getResources().getColor(R.color.primary_dark))
+                        .selectedIcon(getResources().getDrawable(R.drawable.water_percent))
                         .title(stringUtil.getStringFromRes(this, R.string.humidity))
                         .badgeTitle(stringUtil.getStringFromRes(this, R.string.tap_to_check))
                         .build()
         );
         models.add(
                 new NavigationTabBar.Model.Builder(
-                        getResources().getDrawable(R.drawable.ic_third),
-                        getResources().getColor(R.color.primary))
-                        .selectedIcon(getResources().getDrawable(R.drawable.ic_seventh))
+                        getResources().getDrawable(R.drawable.gauge),
+                        getResources().getColor(R.color.primary_dark))
+                        .selectedIcon(getResources().getDrawable(R.drawable.ic_switch))
                         .title(stringUtil.getStringFromRes(this, R.string.pressure))
                         .badgeTitle(stringUtil.getStringFromRes(this, R.string.tap_to_check))
                         .build()
         );
         models.add(
                 new NavigationTabBar.Model.Builder(
-                        getResources().getDrawable(R.drawable.ic_fourth),
-                        getResources().getColor(R.color.primary))
-                        .selectedIcon(getResources().getDrawable(R.drawable.ic_eighth))
+                        getResources().getDrawable(R.drawable.chart_areaspline),
+                        getResources().getColor(R.color.primary_dark))
+                        .selectedIcon(getResources().getDrawable(R.drawable.chart_bar))
                         .title(stringUtil.getStringFromRes(this, R.string.graphics))
                         .badgeTitle(stringUtil.getStringFromRes(this, R.string.tap_to_check))
                         .build()
@@ -124,9 +120,5 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         }, 500);
-    }
-
-    public void setActionBarTitle(String title) {
-        getSupportActionBar().setTitle(title);
     }
 }

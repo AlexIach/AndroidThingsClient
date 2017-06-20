@@ -26,6 +26,6 @@ public class MainActivityModule extends BaseModule<MainActivity> {
     @Provides
     @MainActivityScope
     public MainPagerAdapter provideMainPagerAdapter() {
-        return new MainPagerAdapter(mainActivity.getSupportFragmentManager(), NUMBER_OF_TABS, mainActivity);
+        return new MainPagerAdapter(mainActivity.getSupportFragmentManager(), NUMBER_OF_TABS);
     }
 }

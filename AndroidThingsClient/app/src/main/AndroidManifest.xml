@@ -15,7 +15,9 @@
         <uses-feature android:name="android.hardware.camera" />
         <uses-feature android:name="android.hardware.camera.autofocus" />
 
-        <activity android:name=".view.mainScreen.MainActivity">
+        <activity
+            android:name=".view.mainScreen.MainActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -25,7 +27,9 @@
 
         <activity
             android:name=".view.splashScreen.SplashActivity"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"></activity>
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+
+        </activity>
         <activity
             android:name=".view.qrCodeScreen.QRCodeActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar">
