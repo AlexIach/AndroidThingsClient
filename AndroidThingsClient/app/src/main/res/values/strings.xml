@@ -11,4 +11,7 @@
     <string name="humidity">Humidity</string>
     <string name="graphics">Graphics</string>
     <string name="pressure">Pressure</string>
+    <string name="temperature_type">Temperature Type!</string>
+    <string name="temperature_time">Temperature Time!</string>
+    <string name="temperature_value">Temperature Value !</string>
 </resources>
