@@ -1,7 +1,7 @@
-package com.example.androidthingsclient.view.mainScreen.core.fragments.temperature_fragment.core;
+package com.example.androidthingsclient.view.mainScreen.core.fragments.humidity_fragment.core;
 
+import com.example.androidthingsclient.models.HumidityIndicators;
 import com.example.androidthingsclient.models.SensorsData;
-import com.example.androidthingsclient.models.TemperatureIndicators;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -13,42 +13,41 @@ import java.util.List;
 import javax.inject.Inject;
 
 /**
- * Created by aiachimov on 6/20/17.
+ * Created by aiachimov on 6/26/17.
  */
 
-public class TemperaturePresenter implements ValueEventListener {
+public class HumidityPresenter implements ValueEventListener {
 
-    private TemperatureCallBack callback;
+    private HumidityCallBack callback;
 
     @Inject
-    public TemperaturePresenter() {
+    public HumidityPresenter() {
     }
 
-    public void loadTemperature() {
+    public void setUpCallback(HumidityCallBack callback) {
+        this.callback = callback;
+    }
+
+    public void loadHumidity() {
         FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
         DatabaseReference databaseReference = firebaseDatabase.getReference();
         databaseReference.addValueEventListener(this);
     }
 
-    public void setUpCallback(TemperatureCallBack callback) {
-        this.callback = callback;
-    }
-
     @Override
     public void onDataChange(DataSnapshot dataSnapshot) {
         SensorsData sensorsData = dataSnapshot.getValue(SensorsData.class);
-        callback.onTemperatureLoaded(sensorsData.getTemperatureIndicators());
+        callback.onHumidityLoaded(sensorsData.getHumidityIndicators());
     }
 
     @Override
     public void onCancelled(DatabaseError databaseError) {
-        callback.onFailedGetTemperature("Error Code  is " + databaseError.getCode());
+        callback.onFailedGetHumidity("Error Code  is " + databaseError.getCode());
     }
 
+    public interface HumidityCallBack {
+        void onHumidityLoaded(List<HumidityIndicators> humidityList);
 
-    public interface TemperatureCallBack {
-        void onTemperatureLoaded(List<TemperatureIndicators> temperatureList);
-
-        void onFailedGetTemperature(String error);
+        void onFailedGetHumidity(String error);
     }
 }

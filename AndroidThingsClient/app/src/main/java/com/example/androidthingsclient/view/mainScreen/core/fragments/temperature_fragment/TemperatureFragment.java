@@ -9,7 +9,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.airbnb.lottie.LottieAnimationView;
@@ -75,6 +74,7 @@ public class TemperatureFragment extends Fragment implements TemperaturePresente
     @Override
     public void onResume() {
         super.onResume();
+        lottieAnimationView.setVisibility(View.VISIBLE);
         new Task().execute();
     }
 
@@ -89,7 +89,7 @@ public class TemperatureFragment extends Fragment implements TemperaturePresente
     }
 
     @Override
-    public void onFailedQRCodeSave(String error) {
+    public void onFailedGetTemperature(String error) {
         Log.d("TAG", "Error is " + error);
     }
 

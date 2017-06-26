@@ -1,7 +1,7 @@
-package com.example.androidthingsclient.view.mainScreen.core.fragments.temperature_fragment.core;
+package com.example.androidthingsclient.view.mainScreen.core.fragments.pressure_fragment.core;
 
+import com.example.androidthingsclient.models.PressureIndicators;
 import com.example.androidthingsclient.models.SensorsData;
-import com.example.androidthingsclient.models.TemperatureIndicators;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -13,42 +13,42 @@ import java.util.List;
 import javax.inject.Inject;
 
 /**
- * Created by aiachimov on 6/20/17.
+ * Created by aiachimov on 6/26/17.
  */
 
-public class TemperaturePresenter implements ValueEventListener {
+public class PressurePresenter implements ValueEventListener {
 
-    private TemperatureCallBack callback;
+    private PressureCallBack callback;
 
     @Inject
-    public TemperaturePresenter() {
+    public PressurePresenter() {
     }
 
-    public void loadTemperature() {
+    public void loadPressure() {
         FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
         DatabaseReference databaseReference = firebaseDatabase.getReference();
         databaseReference.addValueEventListener(this);
     }
 
-    public void setUpCallback(TemperatureCallBack callback) {
+    public void setUpCallback(PressureCallBack callback) {
         this.callback = callback;
     }
 
     @Override
     public void onDataChange(DataSnapshot dataSnapshot) {
         SensorsData sensorsData = dataSnapshot.getValue(SensorsData.class);
-        callback.onTemperatureLoaded(sensorsData.getTemperatureIndicators());
+        callback.onPressureLoaded(sensorsData.getPressureIndicators());
     }
 
     @Override
     public void onCancelled(DatabaseError databaseError) {
-        callback.onFailedGetTemperature("Error Code  is " + databaseError.getCode());
+        callback.onFailedGetPressure("Error Code  is " + databaseError.getCode());
     }
 
 
-    public interface TemperatureCallBack {
-        void onTemperatureLoaded(List<TemperatureIndicators> temperatureList);
+    public interface PressureCallBack {
+        void onPressureLoaded(List<PressureIndicators> pressureList);
 
-        void onFailedGetTemperature(String error);
+        void onFailedGetPressure(String error);
     }
 }

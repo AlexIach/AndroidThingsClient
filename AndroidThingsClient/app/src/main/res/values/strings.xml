@@ -11,7 +11,13 @@
     <string name="humidity">Humidity</string>
     <string name="graphics">Graphics</string>
     <string name="pressure">Pressure</string>
-    <string name="temperature_type">Temperature Type!</string>
-    <string name="temperature_time">Temperature Time!</string>
-    <string name="temperature_value">Temperature Value !</string>
+    <string name="temperature_type">Temperature is : </string>
+    <string name="temperature_time">Last synced time at :</string>
+    <string name="temperature_value">Temperature type is : </string>
+    <string name="pressure_type">Pressure is : </string>
+    <string name="pressure_time">Last synced at : </string>
+    <string name="pressure_value">Pressure type is : </string>
+    <string name="humidity_type">Humidity is : </string>
+    <string name="humidity_time">Last synced at : </string>
+    <string name="humidity_value">Humidity Type is : </string>
 </resources>
