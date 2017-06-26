@@ -40,7 +40,6 @@ public class QRCodeActivity extends AppCompatActivity implements QRCodeActivityP
 
     @OnClick(R.id.buttonScan)
     public void scanQRCode(View view) {
-        // TODO scan QR Code
         IntentIntegrator intentIntegrator = new IntentIntegrator(this);
         intentIntegrator.setDesiredBarcodeFormats(IntentIntegrator.QR_CODE_TYPES);
         intentIntegrator.setPrompt(stringUtil.getStringFromRes(this, R.string.QR_help_message));

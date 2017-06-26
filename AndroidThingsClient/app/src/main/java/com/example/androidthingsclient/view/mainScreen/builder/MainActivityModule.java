@@ -28,4 +28,5 @@ public class MainActivityModule extends BaseModule<MainActivity> {
     public MainPagerAdapter provideMainPagerAdapter() {
         return new MainPagerAdapter(mainActivity.getSupportFragmentManager(), NUMBER_OF_TABS);
     }
+
 }
