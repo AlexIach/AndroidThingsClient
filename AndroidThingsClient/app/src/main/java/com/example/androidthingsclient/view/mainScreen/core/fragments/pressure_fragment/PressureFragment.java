@@ -30,7 +30,7 @@ import butterknife.ButterKnife;
 
 public class PressureFragment extends Fragment implements PressurePresenter.PressureCallBack {
 
-    private static final int SLEEP_MILISEC = 2000;
+    private static final int SLEEP_MILISEC = 1800;
     @Inject
     PressurePresenter pressurePresenter;
 
@@ -73,6 +73,7 @@ public class PressureFragment extends Fragment implements PressurePresenter.Pres
     @Override
     public void onResume() {
         super.onResume();
+        lottieAnimationViewPressure.setVisibility(View.VISIBLE);
         new Task().execute();
     }
 
@@ -96,6 +97,7 @@ public class PressureFragment extends Fragment implements PressurePresenter.Pres
             textViewPressureValue.setVisibility(View.GONE);
             textViewPressureType.setVisibility(View.GONE);
             textViewPressureTime.setVisibility(View.GONE);
+            lottieAnimationViewPressure.playAnimation();
             super.onPreExecute();
         }
 
@@ -110,9 +112,8 @@ public class PressureFragment extends Fragment implements PressurePresenter.Pres
 
         @Override
         protected Boolean doInBackground(String... params) {
-
+            pressurePresenter.loadPressure();
             try {
-                pressurePresenter.loadPressure();
                 Thread.sleep(SLEEP_MILISEC);
             } catch (InterruptedException e) {
                 e.printStackTrace();

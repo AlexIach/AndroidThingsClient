@@ -1,0 +1,8 @@
+<resources>
+
+    <dimen name="card_toolbar_btn">40dp</dimen>
+
+    <dimen name="card_view_padding">2dp</dimen>
+    <dimen name="card_view_roundcorner">3dp</dimen>
+
+</resources>

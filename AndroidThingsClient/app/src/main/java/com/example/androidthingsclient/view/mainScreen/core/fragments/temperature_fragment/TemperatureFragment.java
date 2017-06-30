@@ -45,7 +45,7 @@ public class TemperatureFragment extends Fragment implements TemperaturePresente
     TextView textViewTemperatureTime;
 
     @BindView(R.id.lottie_animation_view_loading)
-    LottieAnimationView lottieAnimationView;
+    LottieAnimationView lottieAnimationViewTemperature;
 
     public static TemperatureFragment newInstance() {
         return new TemperatureFragment();
@@ -74,7 +74,7 @@ public class TemperatureFragment extends Fragment implements TemperaturePresente
     @Override
     public void onResume() {
         super.onResume();
-        lottieAnimationView.setVisibility(View.VISIBLE);
+        lottieAnimationViewTemperature.setVisibility(View.VISIBLE);
         new Task().execute();
     }
 
@@ -107,15 +107,14 @@ public class TemperatureFragment extends Fragment implements TemperaturePresente
             textViewTemperatureValue.setVisibility(View.VISIBLE);
             textViewTemperatureType.setVisibility(View.VISIBLE);
             textViewTemperatureTime.setVisibility(View.VISIBLE);
-            lottieAnimationView.setVisibility(View.GONE);
+            lottieAnimationViewTemperature.setVisibility(View.GONE);
             super.onPostExecute(result);
         }
 
         @Override
         protected Boolean doInBackground(String... params) {
-
+            temperaturePresenter.loadTemperature();
             try {
-                temperaturePresenter.loadTemperature();
                 Thread.sleep(SLEEP_MILISEC);
             } catch (InterruptedException e) {
                 e.printStackTrace();

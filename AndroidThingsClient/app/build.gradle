@@ -12,6 +12,7 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        multiDexEnabled true
     }
     buildTypes {
         release {
@@ -69,5 +70,8 @@ dependencies {
     compile ('com.firebaseui:firebase-ui:1.2.0') {
         exclude group: 'com.android.support', module: 'appcompat'
     }
+    //Charts
+    compile 'com.diogobernardino:williamchart:2.5.0'
+    compile 'com.github.PhilJay:MPAndroidChart:v3.0.2'
 }
 apply plugin: 'com.google.gms.google-services'

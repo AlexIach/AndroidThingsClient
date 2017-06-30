@@ -20,4 +20,15 @@
     <string name="humidity_type">Humidity is : </string>
     <string name="humidity_time">Last synced at : </string>
     <string name="humidity_value">Humidity Type is : </string>
+    <!-- Stacked chart one -->
+    <string name="stacked_one_1">STATE 1</string>
+    <string name="stacked_one_2">STATE 2</string>
+    <string name="stacked_one_3">STATE 3</string>
+
+    <!-- Stacked chart three -->
+    <string name="stacked_three_electric">electric</string>
+    <string name="stacked_three_fuel">fuel</string>
+
+    <string name="chart_label">AVERAGE TIME</string>
+    <string name="chart_label3">00:15:39</string>
 </resources>

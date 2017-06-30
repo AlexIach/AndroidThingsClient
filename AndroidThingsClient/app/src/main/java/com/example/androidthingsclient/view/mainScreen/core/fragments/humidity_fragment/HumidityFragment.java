@@ -15,7 +15,6 @@ import com.airbnb.lottie.LottieAnimationView;
 import com.example.androidthingsclient.Injector;
 import com.example.androidthingsclient.R;
 import com.example.androidthingsclient.models.HumidityIndicators;
-import com.example.androidthingsclient.models.PressureIndicators;
 import com.example.androidthingsclient.view.mainScreen.core.fragments.humidity_fragment.core.HumidityPresenter;
 
 import java.util.List;
@@ -75,6 +74,7 @@ public class HumidityFragment extends Fragment implements HumidityPresenter.Humi
     @Override
     public void onResume() {
         super.onResume();
+        lottieAnimationViewHumidity.setVisibility(View.VISIBLE);
         new Task().execute();
     }
 
@@ -98,6 +98,7 @@ public class HumidityFragment extends Fragment implements HumidityPresenter.Humi
             textViewHumidityValue.setVisibility(View.GONE);
             textViewHumidityType.setVisibility(View.GONE);
             textViewHumidityTime.setVisibility(View.GONE);
+            lottieAnimationViewHumidity.playAnimation();
             super.onPreExecute();
         }
 
@@ -112,9 +113,8 @@ public class HumidityFragment extends Fragment implements HumidityPresenter.Humi
 
         @Override
         protected Boolean doInBackground(String... params) {
-
+            humidityPresenter.loadHumidity();
             try {
-                humidityPresenter.loadHumidity();
                 Thread.sleep(SLEEP_MILISEC);
             } catch (InterruptedException e) {
                 e.printStackTrace();

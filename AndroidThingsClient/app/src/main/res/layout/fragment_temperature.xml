@@ -11,7 +11,6 @@
         android:id="@+id/lottie_animation_view_loading"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:visibility="visible"
         app:lottie_autoPlay="true"
         app:lottie_fileName="loading_animation.json"
         app:lottie_loop="true"

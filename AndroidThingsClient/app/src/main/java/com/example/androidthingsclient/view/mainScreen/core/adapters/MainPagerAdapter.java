@@ -4,7 +4,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 
-import com.example.androidthingsclient.view.mainScreen.core.fragments.graphics_fragment.GraphicsFragment;
+import com.example.androidthingsclient.view.mainScreen.core.fragments.charts_fragment.ChartsFragment;
 import com.example.androidthingsclient.view.mainScreen.core.fragments.humidity_fragment.HumidityFragment;
 import com.example.androidthingsclient.view.mainScreen.core.fragments.pressure_fragment.PressureFragment;
 import com.example.androidthingsclient.view.mainScreen.core.fragments.temperature_fragment.TemperatureFragment;
@@ -40,7 +40,7 @@ public class MainPagerAdapter extends FragmentStatePagerAdapter {
             case THIRD_FRAGMENT:
                 return PressureFragment.newInstance();
             case FOURTH_FRAGMENT:
-                return GraphicsFragment.newInstance();
+                return ChartsFragment.newInstance();
         }
         return null;
     }
