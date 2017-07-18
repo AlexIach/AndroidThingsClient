@@ -29,10 +29,10 @@ public class LineCardOne extends CardController {
     private final Context context;
 
 
-    private final String[] labels = {"Jan", "Fev", "Mar", "Apr", "Jun", "May", "Jul", "Aug", "Sep"};
+    private final String[] labels = {"Day 1", "Day 2", "Day 3", "Day 4", "Day 5", "Day 6", "Day 7"};
 
-    private final float[][] values = {{3.5f, 4.7f, 4.3f, 8f, 6.5f, 9.9f, 7f, 8.3f, 7.0f},
-            {4.5f, 2.5f, 2.5f, 9f, 4.5f, 9.5f, 5f, 8.3f, 1.8f}};
+    private final float[][] values = {{23f, 13f, 39f, 21f, 55f, 12f, 25f},
+            {0f, 0f, 0f, 0f, 0f, 0f, 0f}};
 
     private Tooltip tip;
 
@@ -72,7 +72,7 @@ public class LineCardOne extends CardController {
                     PropertyValuesHolder.ofFloat(View.SCALE_Y, 0f),
                     PropertyValuesHolder.ofFloat(View.SCALE_X, 0f)).setDuration(200);
 
-            tip.setPivotX(Tools.fromDpToPx(65) / 2);
+            tip.setPivotX(Tools.fromDpToPx(60) / 2);
             tip.setPivotY(Tools.fromDpToPx(25));
         }
 
