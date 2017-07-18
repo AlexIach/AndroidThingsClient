@@ -9,14 +9,9 @@ import android.view.ViewGroup;
 
 import com.example.androidthingsclient.R;
 import com.example.androidthingsclient.view.mainScreen.core.fragments.charts_fragment.core.barchart.BarCardOne;
-import com.example.androidthingsclient.view.mainScreen.core.fragments.charts_fragment.core.barchart.BarCardThree;
-import com.example.androidthingsclient.view.mainScreen.core.fragments.charts_fragment.core.barchart.BarCardTwo;
 import com.example.androidthingsclient.view.mainScreen.core.fragments.charts_fragment.core.linechart.LineCardOne;
 import com.example.androidthingsclient.view.mainScreen.core.fragments.charts_fragment.core.linechart.LineCardThree;
-import com.example.androidthingsclient.view.mainScreen.core.fragments.charts_fragment.core.linechart.LineCardTwo;
 import com.example.androidthingsclient.view.mainScreen.core.fragments.charts_fragment.core.stackedchart.StackedCardOne;
-import com.example.androidthingsclient.view.mainScreen.core.fragments.charts_fragment.core.stackedchart.StackedCardThree;
-import com.example.androidthingsclient.view.mainScreen.core.fragments.charts_fragment.core.stackedchart.StackedCardTwo;
 
 import javax.inject.Inject;
 
@@ -27,7 +22,7 @@ import javax.inject.Inject;
 public class ChartsAdapter extends RecyclerView.Adapter<ChartsAdapter.ViewHolder> {
 
 
-    private final static int NUM_CHARTS = 9;
+    private final static int NUM_CHARTS = 4;
     private final Context context;
 
     @Inject
@@ -49,26 +44,11 @@ public class ChartsAdapter extends RecyclerView.Adapter<ChartsAdapter.ViewHolder
             case 2:
                 v = LayoutInflater.from(context).inflate(R.layout.chart3, parent, false);
                 break;
-            case 3:
-                v = LayoutInflater.from(context).inflate(R.layout.chart4, parent, false);
-                break;
             case 4:
                 v = LayoutInflater.from(context).inflate(R.layout.chart5, parent, false);
                 break;
-            case 5:
-                v = LayoutInflater.from(context).inflate(R.layout.chart6, parent, false);
-                break;
-            case 6:
-                v = LayoutInflater.from(context).inflate(R.layout.chart7, parent, false);
-                break;
-            case 7:
-                v = LayoutInflater.from(context).inflate(R.layout.chart8, parent, false);
-                break;
-            case 8:
-                v = LayoutInflater.from(context).inflate(R.layout.chart9, parent, false);
-                break;
             default:
-                v = LayoutInflater.from(context).inflate(R.layout.chart1, parent, false);
+                v = LayoutInflater.from(context).inflate(R.layout.chart5, parent, false);
                 break;
         }
         return new ViewHolder(v);
@@ -87,26 +67,11 @@ public class ChartsAdapter extends RecyclerView.Adapter<ChartsAdapter.ViewHolder
             case 2:
                 (new BarCardOne(holder.cardView, context)).init();
                 break;
-            case 3:
-                (new StackedCardThree(holder.cardView, context)).init();
-                break;
             case 4:
                 (new StackedCardOne(holder.cardView)).init();
                 break;
-            case 5:
-                (new BarCardThree(holder.cardView, context)).init();
-                break;
-            case 6:
-                (new BarCardTwo(holder.cardView, context)).init();
-                break;
-            case 7:
-                (new StackedCardTwo(holder.cardView)).init();
-                break;
-            case 8:
-                (new LineCardTwo(holder.cardView)).init();
-                break;
             default:
-                (new LineCardOne(holder.cardView, context)).init();
+                (new StackedCardOne(holder.cardView)).init();
                 break;
         }
     }

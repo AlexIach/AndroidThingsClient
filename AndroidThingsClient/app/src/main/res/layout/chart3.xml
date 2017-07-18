@@ -6,7 +6,7 @@
     android:layout_height="200dp"
     android:layout_alignParentEnd="true"
     android:layout_alignParentRight="true"
-    android:layout_margin="@dimen/card_view_padding"
+    android:layout_margin="1dp"
     williamchart:cardBackgroundColor="#362126"
     williamchart:cardCornerRadius="@dimen/card_view_roundcorner">
 

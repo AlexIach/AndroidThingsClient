@@ -30,8 +30,7 @@ import butterknife.ButterKnife;
 
 public class HumidityFragment extends Fragment implements HumidityPresenter.HumidityCallBack {
 
-
-    private static final int SLEEP_MILISEC = 2000;
+    private static final int SLEEP_MILISEC = 1600;
     @Inject
     HumidityPresenter humidityPresenter;
 
@@ -74,7 +73,6 @@ public class HumidityFragment extends Fragment implements HumidityPresenter.Humi
     @Override
     public void onResume() {
         super.onResume();
-        lottieAnimationViewHumidity.setVisibility(View.VISIBLE);
         new Task().execute();
     }
 
@@ -98,16 +96,16 @@ public class HumidityFragment extends Fragment implements HumidityPresenter.Humi
             textViewHumidityValue.setVisibility(View.GONE);
             textViewHumidityType.setVisibility(View.GONE);
             textViewHumidityTime.setVisibility(View.GONE);
-            lottieAnimationViewHumidity.playAnimation();
+            lottieAnimationViewHumidity.setVisibility(View.VISIBLE);
             super.onPreExecute();
         }
 
         @Override
         protected void onPostExecute(Boolean result) {
+            lottieAnimationViewHumidity.setVisibility(View.GONE);
             textViewHumidityValue.setVisibility(View.VISIBLE);
             textViewHumidityType.setVisibility(View.VISIBLE);
             textViewHumidityTime.setVisibility(View.VISIBLE);
-            lottieAnimationViewHumidity.setVisibility(View.GONE);
             super.onPostExecute(result);
         }
 

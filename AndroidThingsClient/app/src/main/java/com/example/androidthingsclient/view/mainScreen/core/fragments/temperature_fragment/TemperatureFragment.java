@@ -30,8 +30,7 @@ import butterknife.ButterKnife;
 
 public class TemperatureFragment extends Fragment implements TemperaturePresenter.TemperatureCallBack {
 
-
-    private static final int SLEEP_MILISEC = 2000;
+    private static final int SLEEP_MILISEC = 1600;
     @Inject
     TemperaturePresenter temperaturePresenter;
 
@@ -74,7 +73,6 @@ public class TemperatureFragment extends Fragment implements TemperaturePresente
     @Override
     public void onResume() {
         super.onResume();
-        lottieAnimationViewTemperature.setVisibility(View.VISIBLE);
         new Task().execute();
     }
 
@@ -85,7 +83,6 @@ public class TemperatureFragment extends Fragment implements TemperaturePresente
         textViewTemperatureValue.setText("Temperature  Value is " + currentTemperature.getValue());
         textViewTemperatureType.setText("Temperature  Type is " + currentTemperature.getType());
         textViewTemperatureTime.setText("Last synced at " + currentTemperature.getTime());
-
     }
 
     @Override
@@ -99,16 +96,15 @@ public class TemperatureFragment extends Fragment implements TemperaturePresente
             textViewTemperatureValue.setVisibility(View.GONE);
             textViewTemperatureType.setVisibility(View.GONE);
             textViewTemperatureTime.setVisibility(View.GONE);
-            super.onPreExecute();
+            lottieAnimationViewTemperature.setVisibility(View.VISIBLE);
         }
 
         @Override
         protected void onPostExecute(Boolean result) {
+            lottieAnimationViewTemperature.setVisibility(View.GONE);
             textViewTemperatureValue.setVisibility(View.VISIBLE);
             textViewTemperatureType.setVisibility(View.VISIBLE);
             textViewTemperatureTime.setVisibility(View.VISIBLE);
-            lottieAnimationViewTemperature.setVisibility(View.GONE);
-            super.onPostExecute(result);
         }
 
         @Override

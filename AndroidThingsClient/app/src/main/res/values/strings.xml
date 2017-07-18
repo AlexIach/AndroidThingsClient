@@ -9,7 +9,7 @@
     <string name="tap_to_check">"Check"</string>
     <string name="temperature">Temperature</string>
     <string name="humidity">Humidity</string>
-    <string name="graphics">Graphics</string>
+    <string name="graphics">Charts</string>
     <string name="pressure">Pressure</string>
     <string name="temperature_type">Temperature is : </string>
     <string name="temperature_time">Last synced time at :</string>

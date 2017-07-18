@@ -20,7 +20,6 @@ import com.db.chart.view.HorizontalBarChartView;
 import com.example.androidthingsclient.R;
 import com.example.androidthingsclient.view.mainScreen.core.fragments.charts_fragment.core.CardController;
 
-
 import java.util.Locale;
 
 
