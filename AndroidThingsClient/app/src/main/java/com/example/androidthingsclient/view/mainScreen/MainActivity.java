@@ -79,10 +79,10 @@ public class MainActivity extends AppCompatActivity {
         );
         models.add(
                 new NavigationTabBar.Model.Builder(
-                        getResources().getDrawable(R.drawable.chart_areaspline),
+                        getResources().getDrawable(R.mipmap.ic_lightbulb_outline_black_48dp),
                         getResources().getColor(R.color.primary_dark))
-                        .selectedIcon(getResources().getDrawable(R.drawable.chart_bar))
-                        .title(stringUtil.getStringFromRes(this, R.string.graphics))
+                        .selectedIcon(getResources().getDrawable(R.mipmap.ic_highlight_black_48dp))
+                        .title(stringUtil.getStringFromRes(this, R.string.lights))
                         .badgeTitle(stringUtil.getStringFromRes(this, R.string.tap_to_check))
                         .build()
         );

@@ -20,4 +20,8 @@
     <color name="DeepSkyBlue">#00BFFF</color>
     <color name="White">#FFFFF9</color>
     <color name="PaleGreen">#98FB98</color>
+    <color name="toggleButtonOn">#efeb03</color>
+    <color name="toggleButtonOff">#b9b8b8</color>
+    <color name="toggleButtonBorder">#b9b8b8</color>
+
 </resources>

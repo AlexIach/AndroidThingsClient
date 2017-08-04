@@ -3,7 +3,6 @@ package com.example.androidthingsclient.view.mainScreen.builder;
 import com.example.androidthingsclient.view.common.BaseModule;
 import com.example.androidthingsclient.view.mainScreen.MainActivity;
 import com.example.androidthingsclient.view.mainScreen.core.adapters.MainPagerAdapter;
-import com.example.androidthingsclient.view.mainScreen.core.fragments.charts_fragment.core.adapters.ChartsAdapter;
 
 import dagger.Module;
 import dagger.Provides;
@@ -29,11 +28,4 @@ public class MainActivityModule extends BaseModule<MainActivity> {
     public MainPagerAdapter provideMainPagerAdapter() {
         return new MainPagerAdapter(mainActivity.getSupportFragmentManager(), NUMBER_OF_TABS);
     }
-
-    @Provides
-    @MainActivityScope
-    public ChartsAdapter provideChartsAdapter() {
-        return new ChartsAdapter(mainActivity.getApplicationContext());
-    }
-
 }
