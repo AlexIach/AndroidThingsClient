@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:toggle="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    tools:context="com.example.androidthingsclient.view.mainScreen.MainActivity">
+
+    <TextView
+        android:id="@+id/textViewStatusKitchen"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Kichen status : "
+        android:layout_alignBottom="@+id/textViewStatusBathRoom"
+        android:layout_alignStart="@+id/textViewStatusBathRoom"
+        android:layout_marginLeft="8dp"
+        toggle:layout_constraintLeft_toLeftOf="parent"
+        toggle:layout_constraintRight_toLeftOf="@+id/toggleButtonKitchen"
+        android:layout_marginRight="8dp"
+        toggle:layout_constraintHorizontal_bias="0.555"
+        toggle:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        toggle:layout_constraintBottom_toTopOf="@+id/textViewStatusBathRoom" />
+
+    <com.zcw.togglebutton.ToggleButton
+        android:id="@+id/toggleButtonKitchen"
+        android:layout_width="54dp"
+        toggle:tbOnColor="@color/toggleButtonOn"
+        toggle:tbOffColor="@color/toggleButtonOff"
+        toggle:tbSpotColor="@color/primary"
+        toggle:tbOffBorderColor="@color/toggleButtonBorder"
+        toggle:tbBorderWidth="0dp"
+        android:layout_height="30dp"
+        android:layout_toRightOf="@+id/textViewStatusKitchen"
+        android:layout_marginRight="8dp"
+        toggle:layout_constraintRight_toRightOf="parent"
+        android:layout_marginLeft="8dp"
+        toggle:layout_constraintLeft_toLeftOf="parent"
+        toggle:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        toggle:layout_constraintBottom_toTopOf="@+id/toggleButtonbathRoom">
+    </com.zcw.togglebutton.ToggleButton>
+
+    <TextView
+        android:id="@+id/textViewStatusMainRoom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Main room status : "
+        android:layout_alignParentBottom="true"
+        android:layout_alignStart="@+id/textViewStatusBathRoom"
+        android:layout_marginLeft="8dp"
+        toggle:layout_constraintLeft_toLeftOf="parent"
+        toggle:layout_constraintRight_toLeftOf="@+id/toggleButtonMainRoom"
+        android:layout_marginRight="8dp"
+        toggle:layout_constraintBottom_toBottomOf="parent"
+        toggle:layout_constraintHorizontal_bias="0.517"
+        android:layout_marginBottom="8dp"
+        toggle:layout_constraintTop_toTopOf="@+id/textViewStatusBathRoom"
+        android:layout_marginTop="8dp" />
+
+    <com.zcw.togglebutton.ToggleButton
+        android:id="@+id/toggleButtonMainRoom"
+        android:layout_width="54dp"
+        toggle:tbOnColor="@color/toggleButtonOn"
+        toggle:tbOffColor="@color/toggleButtonOff"
+        toggle:tbSpotColor="@color/primary"
+        toggle:tbOffBorderColor="@color/toggleButtonBorder"
+        toggle:tbBorderWidth="0dp"
+        android:layout_height="30dp"
+        android:layout_marginRight="8dp"
+        toggle:layout_constraintRight_toRightOf="parent"
+        android:layout_marginLeft="8dp"
+        toggle:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginTop="8dp"
+        toggle:layout_constraintTop_toBottomOf="@+id/toggleButtonbathRoom"
+        toggle:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="8dp"
+        toggle:layout_constraintVertical_bias="0.418">
+    </com.zcw.togglebutton.ToggleButton>
+
+    <TextView
+        android:id="@+id/textViewStatusBathRoom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="14dp"
+        android:text="Bathroom status : "
+        android:layout_above="@+id/textViewStatusMainRoom"
+        android:layout_alignParentStart="true"
+        android:layout_marginLeft="8dp"
+        toggle:layout_constraintLeft_toLeftOf="parent"
+        toggle:layout_constraintRight_toLeftOf="@+id/toggleButtonbathRoom"
+        android:layout_marginRight="8dp"
+        toggle:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="8dp"
+        toggle:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="8dp" />
+
+    <com.zcw.togglebutton.ToggleButton
+        android:id="@+id/toggleButtonbathRoom"
+        android:layout_width="54dp"
+        toggle:tbOnColor="@color/toggleButtonOn"
+        toggle:tbOffColor="@color/toggleButtonOff"
+        toggle:tbSpotColor="@color/primary"
+        toggle:tbOffBorderColor="@color/toggleButtonBorder"
+        toggle:tbBorderWidth="0dp"
+        android:layout_height="30dp"
+        android:layout_marginRight="8dp"
+        toggle:layout_constraintRight_toRightOf="parent"
+        android:layout_marginLeft="8dp"
+        toggle:layout_constraintLeft_toLeftOf="parent"
+        toggle:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="8dp"
+        toggle:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="8dp">
+    </com.zcw.togglebutton.ToggleButton>
+
+    <ImageView
+        android:id="@+id/imageViewKitchen"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="8dp"
+        toggle:layout_constraintBottom_toTopOf="@+id/imageViewBathroom"
+        toggle:layout_constraintLeft_toRightOf="@+id/toggleButtonKitchen"
+        toggle:layout_constraintRight_toRightOf="parent"
+        toggle:layout_constraintTop_toTopOf="parent"
+        toggle:srcCompat="@drawable/bulb_off" />
+
+    <ImageView
+        android:id="@+id/imageViewBathroom"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        toggle:srcCompat="@drawable/bulb_off"
+        toggle:layout_constraintLeft_toRightOf="@+id/toggleButtonbathRoom"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        toggle:layout_constraintRight_toRightOf="parent"
+        toggle:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="8dp"
+        toggle:layout_constraintHorizontal_bias="0.504"
+        toggle:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="8dp" />
+
+    <ImageView
+        android:id="@+id/imageViewMainRoom"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="8dp"
+        toggle:layout_constraintBottom_toBottomOf="parent"
+        toggle:layout_constraintHorizontal_bias="0.504"
+        toggle:layout_constraintLeft_toRightOf="@+id/toggleButtonMainRoom"
+        toggle:layout_constraintRight_toRightOf="parent"
+        toggle:layout_constraintTop_toBottomOf="@+id/imageViewBathroom"
+        toggle:layout_constraintVertical_bias="0.384"
+        toggle:srcCompat="@drawable/bulb_off" />
+
+</android.support.constraint.ConstraintLayout>
