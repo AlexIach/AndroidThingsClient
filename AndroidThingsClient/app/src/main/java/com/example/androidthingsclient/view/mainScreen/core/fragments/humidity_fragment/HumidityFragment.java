@@ -15,7 +15,12 @@ import com.airbnb.lottie.LottieAnimationView;
 import com.example.androidthingsclient.Injector;
 import com.example.androidthingsclient.R;
 import com.example.androidthingsclient.models.HumidityIndicators;
+import com.example.androidthingsclient.util.DateFormatterProvider;
 import com.example.androidthingsclient.view.mainScreen.core.fragments.humidity_fragment.core.HumidityPresenter;
+
+import org.joda.time.DateTime;
+import org.joda.time.DateTimeZone;
+import org.joda.time.Period;
 
 import java.util.List;
 
@@ -33,6 +38,8 @@ public class HumidityFragment extends Fragment implements HumidityPresenter.Humi
     private static final int SLEEP_MILISEC = 1600;
     @Inject
     HumidityPresenter humidityPresenter;
+    @Inject
+    DateFormatterProvider dateFormatterProvider;
 
     @BindView(R.id.constraintLayoutHumidity)
     ConstraintLayout constraintLayoutHumidity;
@@ -82,7 +89,9 @@ public class HumidityFragment extends Fragment implements HumidityPresenter.Humi
         HumidityIndicators currentHumidity = humidityList.get(humidityList.size() - 1);
         textViewHumidityValue.setText("Humidity  Value is " + currentHumidity.getValue());
         textViewHumidityType.setText("Humidity  Type is " + currentHumidity.getType());
-        textViewHumidityTime.setText("Last synced at " + currentHumidity.getTime());
+        DateTime currentDateTime = DateTime.now();
+        DateTime lastSyncDateTime = new DateTime(Long.valueOf(currentHumidity.getTime()), DateTimeZone.UTC);
+        textViewHumidityTime.setText("Last synced : " + dateFormatterProvider.periodFormatter().print(new Period(lastSyncDateTime, currentDateTime)) + " ago");
     }
 
     @Override

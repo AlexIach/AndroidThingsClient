@@ -15,7 +15,12 @@ import com.airbnb.lottie.LottieAnimationView;
 import com.example.androidthingsclient.Injector;
 import com.example.androidthingsclient.R;
 import com.example.androidthingsclient.models.PressureIndicators;
+import com.example.androidthingsclient.util.DateFormatterProvider;
 import com.example.androidthingsclient.view.mainScreen.core.fragments.pressure_fragment.core.PressurePresenter;
+
+import org.joda.time.DateTime;
+import org.joda.time.DateTimeZone;
+import org.joda.time.Period;
 
 import java.util.List;
 
@@ -33,6 +38,8 @@ public class PressureFragment extends Fragment implements PressurePresenter.Pres
     private static final int SLEEP_MILISEC = 1600;
     @Inject
     PressurePresenter pressurePresenter;
+    @Inject
+    DateFormatterProvider dateFormatterProvider;
 
     @BindView(R.id.constraintLayoutPressure)
     ConstraintLayout constraintLayoutPressure;
@@ -82,7 +89,9 @@ public class PressureFragment extends Fragment implements PressurePresenter.Pres
         PressureIndicators currentPressure = pressureList.get(pressureList.size() - 1);
         textViewPressureValue.setText("Pressure  Value is " + currentPressure.getValue());
         textViewPressureType.setText("Pressure  Type is " + currentPressure.getType());
-        textViewPressureTime.setText("Last synced at " + currentPressure.getTime());
+        DateTime currentDateTime = DateTime.now();
+        DateTime lastSyncDateTime = new DateTime(Long.valueOf(currentPressure.getTime()), DateTimeZone.UTC);
+        textViewPressureTime.setText("Last synced : " + dateFormatterProvider.periodFormatter().print(new Period(lastSyncDateTime, currentDateTime)) + " ago");
     }
 
     @Override

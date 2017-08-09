@@ -9,13 +9,19 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.airbnb.lottie.LottieAnimationView;
 import com.example.androidthingsclient.Injector;
 import com.example.androidthingsclient.R;
 import com.example.androidthingsclient.models.TemperatureIndicators;
+import com.example.androidthingsclient.util.DateFormatterProvider;
 import com.example.androidthingsclient.view.mainScreen.core.fragments.temperature_fragment.core.TemperaturePresenter;
+
+import org.joda.time.DateTime;
+import org.joda.time.DateTimeZone;
+import org.joda.time.Period;
 
 import java.util.List;
 
@@ -33,13 +39,15 @@ public class TemperatureFragment extends Fragment implements TemperaturePresente
     private static final int SLEEP_MILISEC = 1600;
     @Inject
     TemperaturePresenter temperaturePresenter;
+    @Inject
+    DateFormatterProvider dateFormatterProvider;
 
     @BindView(R.id.constraintLayoutTemperature)
     ConstraintLayout constraintLayoutTemperature;
     @BindView(R.id.textViewTemperatureValue)
     TextView textViewTemperatureValue;
     @BindView(R.id.textViewTemperatureType)
-    TextView textViewTemperatureType;
+    ImageView textViewTemperatureType;
     @BindView(R.id.textViewTemperatureTime)
     TextView textViewTemperatureTime;
 
@@ -80,9 +88,11 @@ public class TemperatureFragment extends Fragment implements TemperaturePresente
     public void onTemperatureLoaded(List<TemperatureIndicators> temperatureList) {
         Log.d("TAG", "TemperatureFragmentList size is " + temperatureList.size());
         TemperatureIndicators currentTemperature = temperatureList.get(temperatureList.size() - 1);
-        textViewTemperatureValue.setText("Temperature  Value is " + currentTemperature.getValue());
-        textViewTemperatureType.setText("Temperature  Type is " + currentTemperature.getType());
-        textViewTemperatureTime.setText("Last synced at " + currentTemperature.getTime());
+        textViewTemperatureValue.setText("Current temperature is " + currentTemperature.getValue());
+        setTemperatyreTypeImage(currentTemperature.getType());
+        DateTime currentDateTime = DateTime.now();
+        DateTime lastSyncDateTime = new DateTime(Long.valueOf(currentTemperature.getTime()), DateTimeZone.UTC);
+        textViewTemperatureTime.setText("Last synced : " + dateFormatterProvider.periodFormatter().print(new Period(lastSyncDateTime, currentDateTime)) + " ago");
     }
 
     @Override
@@ -116,6 +126,16 @@ public class TemperatureFragment extends Fragment implements TemperaturePresente
                 e.printStackTrace();
             }
             return null;
+        }
+    }
+
+    private void setTemperatyreTypeImage(String temperatureType) {
+        if (temperatureType.equalsIgnoreCase("Cold")) {
+            textViewTemperatureType.setImageResource(R.drawable.cold);
+        } else if (temperatureType.equalsIgnoreCase("Warm")) {
+            textViewTemperatureType.setImageResource(R.drawable.warm);
+        } else {
+            textViewTemperatureType.setImageResource(R.drawable.normal);
         }
     }
 }

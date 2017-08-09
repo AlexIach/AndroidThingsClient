@@ -32,4 +32,21 @@
 
     <string name="chart_label">AVERAGE TIME</string>
     <string name="chart_label3">00:15:39</string>
+
+    <string name="book">EEE dd MMM</string>
+    <string name="common_time_format">HH:mm</string>
+    <string name="common_time_format_am_pm">hh:mm a</string>
+    <string name="common_date_dayFormat">dd EEE</string>
+    <string name="common_date_monthYearFormat">MMM yyyy</string>
+    <string name="common_date_format_short">dd</string>
+    <string name="common_date_format_medium">dd MMM</string>
+    <string name="common_date_format_long">dd MMM yyyy</string>
+    <string name="common_date_format_full">EEE dd MMM yyyy</string>
+    <string name="common_date_format_fullSlashFormat">dd/MM/yyyy</string>
+
+    <string name="mytrips_flight_details_hour"> hr</string>
+    <string name="mytrips_flight_details_day"> d</string>
+    <string name="mytrips_flight_details_minutes"> min</string>
+    <string name="weeks"> w</string>
+
 </resources>
