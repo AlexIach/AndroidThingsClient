@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.airbnb.lottie.LottieAnimationView;
@@ -46,7 +47,7 @@ public class HumidityFragment extends Fragment implements HumidityPresenter.Humi
     @BindView(R.id.textViewHumidityValue)
     TextView textViewHumidityValue;
     @BindView(R.id.textViewHumidityType)
-    TextView textViewHumidityType;
+    ImageView textViewHumidityType;
     @BindView(R.id.textViewHumidityTime)
     TextView textViewHumidityTime;
 
@@ -87,8 +88,9 @@ public class HumidityFragment extends Fragment implements HumidityPresenter.Humi
     public void onHumidityLoaded(List<HumidityIndicators> humidityList) {
         Log.d("TAG", "HumidityFragmentList size is " + humidityList.size());
         HumidityIndicators currentHumidity = humidityList.get(humidityList.size() - 1);
-        textViewHumidityValue.setText("Humidity  Value is " + currentHumidity.getValue());
-        textViewHumidityType.setText("Humidity  Type is " + currentHumidity.getType());
+        textViewHumidityValue.setText("Humidity  Value is " + currentHumidity.getValue() + "%");
+        //textViewHumidityType.setText("Humidity  Type is " + currentHumidity.getType());
+        setHumidityTypeImage(currentHumidity.getType());
         DateTime currentDateTime = DateTime.now();
         DateTime lastSyncDateTime = new DateTime(Long.valueOf(currentHumidity.getTime()), DateTimeZone.UTC);
         textViewHumidityTime.setText("Last synced : " + dateFormatterProvider.periodFormatter().print(new Period(lastSyncDateTime, currentDateTime)) + " ago");
@@ -127,6 +129,16 @@ public class HumidityFragment extends Fragment implements HumidityPresenter.Humi
                 e.printStackTrace();
             }
             return null;
+        }
+    }
+
+    private void setHumidityTypeImage(String temperatureType) {
+        if (temperatureType.equalsIgnoreCase("Low")) {
+            textViewHumidityType.setImageResource(R.drawable.humidity_low);
+        } else if (temperatureType.equalsIgnoreCase("High")) {
+            textViewHumidityType.setImageResource(R.drawable.humidity_high);
+        } else {
+            textViewHumidityType.setImageResource(R.drawable.humidity_normal);
         }
     }
 }

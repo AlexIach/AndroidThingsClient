@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.airbnb.lottie.LottieAnimationView;
@@ -46,7 +47,7 @@ public class PressureFragment extends Fragment implements PressurePresenter.Pres
     @BindView(R.id.textViewPressureValue)
     TextView textViewPressureValue;
     @BindView(R.id.textViewPressureType)
-    TextView textViewPressureType;
+    ImageView textViewPressureType;
     @BindView(R.id.textViewPressureTime)
     TextView textViewPressureTime;
 
@@ -88,7 +89,8 @@ public class PressureFragment extends Fragment implements PressurePresenter.Pres
         Log.d("TAG", "PressureFragmentList size is " + pressureList.size());
         PressureIndicators currentPressure = pressureList.get(pressureList.size() - 1);
         textViewPressureValue.setText("Pressure  Value is " + currentPressure.getValue());
-        textViewPressureType.setText("Pressure  Type is " + currentPressure.getType());
+        //textViewPressureType.setText("Pressure  Type is " + currentPressure.getType());
+        setPressureTypeImage(currentPressure.getType());
         DateTime currentDateTime = DateTime.now();
         DateTime lastSyncDateTime = new DateTime(Long.valueOf(currentPressure.getTime()), DateTimeZone.UTC);
         textViewPressureTime.setText("Last synced : " + dateFormatterProvider.periodFormatter().print(new Period(lastSyncDateTime, currentDateTime)) + " ago");
@@ -127,6 +129,16 @@ public class PressureFragment extends Fragment implements PressurePresenter.Pres
                 e.printStackTrace();
             }
             return null;
+        }
+    }
+
+    private void setPressureTypeImage(String temperatureType) {
+        if (temperatureType.equalsIgnoreCase("Low")) {
+            textViewPressureType.setImageResource(R.drawable.pressure_low);
+        } else if (temperatureType.equalsIgnoreCase("High")) {
+            textViewPressureType.setImageResource(R.drawable.pressure_high);
+        } else {
+            textViewPressureType.setImageResource(R.drawable.pressure_normal);
         }
     }
 }

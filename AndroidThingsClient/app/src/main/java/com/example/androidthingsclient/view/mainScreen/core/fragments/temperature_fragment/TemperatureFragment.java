@@ -132,7 +132,7 @@ public class TemperatureFragment extends Fragment implements TemperaturePresente
     private void setTemperatyreTypeImage(String temperatureType) {
         if (temperatureType.equalsIgnoreCase("Cold")) {
             textViewTemperatureType.setImageResource(R.drawable.cold);
-        } else if (temperatureType.equalsIgnoreCase("Warm")) {
+        } else if (temperatureType.equalsIgnoreCase("Hot")) {
             textViewTemperatureType.setImageResource(R.drawable.warm);
         } else {
             textViewTemperatureType.setImageResource(R.drawable.normal);
