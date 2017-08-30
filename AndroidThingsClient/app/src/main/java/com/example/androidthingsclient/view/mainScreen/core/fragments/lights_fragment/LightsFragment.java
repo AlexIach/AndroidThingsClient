@@ -1,5 +1,6 @@
 package com.example.androidthingsclient.view.mainScreen.core.fragments.lights_fragment;
 
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -71,6 +72,11 @@ public class LightsFragment extends Fragment implements LightPresenter.LightCall
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_lights, container, false);
         ButterKnife.bind(this, view);
+        Typeface tf = Typeface.createFromAsset(getActivity().getAssets(),
+                "fonts/germania_one.ttf");
+        textViewKitchen.setTypeface(tf);
+        textViewBathroom.setTypeface(tf);
+        textViewMainRoom.setTypeface(tf);
         toggleButtonKitchen.setOnToggleChanged(new ToggleButton.OnToggleChanged() {
             @Override
             public void onToggle(boolean on) {

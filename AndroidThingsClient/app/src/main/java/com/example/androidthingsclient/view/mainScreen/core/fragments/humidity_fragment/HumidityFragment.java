@@ -1,5 +1,6 @@
 package com.example.androidthingsclient.view.mainScreen.core.fragments.humidity_fragment;
 
+import android.graphics.Typeface;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -69,6 +70,10 @@ public class HumidityFragment extends Fragment implements HumidityPresenter.Humi
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_humidity, container, false);
         ButterKnife.bind(this, view);
+        Typeface tf = Typeface.createFromAsset(getActivity().getAssets(),
+                "fonts/germania_one.ttf");
+        textViewHumidityValue.setTypeface(tf);
+        textViewHumidityTime.setTypeface(tf);
         return view;
     }
 

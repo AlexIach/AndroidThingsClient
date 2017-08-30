@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.widget.Button;
 import android.widget.Toast;
 
 import com.airbnb.lottie.LottieAnimationView;
@@ -17,6 +16,7 @@ import com.example.androidthingsclient.view.mainScreen.MainActivity;
 import com.example.androidthingsclient.view.qrCodeScreen.core.presenter.QRCodeActivityPresenter;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
+import com.spark.submitbutton.SubmitButton;
 
 import javax.inject.Inject;
 
@@ -29,7 +29,7 @@ public class QRCodeActivity extends AppCompatActivity implements QRCodeActivityP
     @BindView(R.id.lottie_animation_view)
     LottieAnimationView lottieAnimationView;
     @BindView(R.id.buttonScan)
-    Button buttonScan;
+    SubmitButton buttonScan;
 
     @Inject
     StringUtil stringUtil;

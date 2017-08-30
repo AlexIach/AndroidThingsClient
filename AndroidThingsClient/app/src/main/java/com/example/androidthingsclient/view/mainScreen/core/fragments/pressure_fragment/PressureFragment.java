@@ -1,5 +1,6 @@
 package com.example.androidthingsclient.view.mainScreen.core.fragments.pressure_fragment;
 
+import android.graphics.Typeface;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -69,6 +70,10 @@ public class PressureFragment extends Fragment implements PressurePresenter.Pres
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_pressure, container, false);
         ButterKnife.bind(this, view);
+        Typeface tf = Typeface.createFromAsset(getActivity().getAssets(),
+                "fonts/germania_one.ttf");
+        textViewPressureValue.setTypeface(tf);
+        textViewPressureTime.setTypeface(tf);
         return view;
     }
 

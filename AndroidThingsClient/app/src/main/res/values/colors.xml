@@ -23,5 +23,6 @@
     <color name="toggleButtonOn">#efeb03</color>
     <color name="toggleButtonOff">#b9b8b8</color>
     <color name="toggleButtonBorder">#b9b8b8</color>
+    <color name="scanButtonColor">#09b631</color>
 
 </resources>

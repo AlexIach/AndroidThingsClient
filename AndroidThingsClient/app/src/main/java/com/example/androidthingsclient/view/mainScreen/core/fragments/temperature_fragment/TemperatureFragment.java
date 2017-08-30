@@ -1,5 +1,6 @@
 package com.example.androidthingsclient.view.mainScreen.core.fragments.temperature_fragment;
 
+import android.graphics.Typeface;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -69,6 +70,10 @@ public class TemperatureFragment extends Fragment implements TemperaturePresente
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_temperature, container, false);
         ButterKnife.bind(this, view);
+        Typeface tf = Typeface.createFromAsset(getActivity().getAssets(),
+                "fonts/germania_one.ttf");
+        textViewTemperatureValue.setTypeface(tf);
+        textViewTemperatureTime.setTypeface(tf);
         return view;
     }
 
