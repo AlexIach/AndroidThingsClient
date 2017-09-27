@@ -17,7 +17,11 @@ public class SensorsData {
     public SensorsData() {
     }
 
-    public SensorsData(List<HumidityIndicators> humidityIndicators, List<PressureIndicators> pressureIndicators, List<TemperatureIndicators> temperatureIndicators, boolean isBathRoomLightEnable, boolean isKitchenLightEnable, boolean isMainRoomLightEnable) {
+    public SensorsData(List<HumidityIndicators> humidityIndicators,
+                       List<PressureIndicators> pressureIndicators,
+                       List<TemperatureIndicators> temperatureIndicators,
+                       boolean isBathRoomLightEnable, boolean isKitchenLightEnable,
+                       boolean isMainRoomLightEnable) {
         this.humidityIndicators = humidityIndicators;
         this.pressureIndicators = pressureIndicators;
         this.temperatureIndicators = temperatureIndicators;
