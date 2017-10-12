@@ -1,6 +1,7 @@
 package com.example.androidthingsclient.view.mainScreen.core.fragments.humidity_fragment.core;
 
 import com.example.androidthingsclient.models.HumidityIndicators;
+import com.example.androidthingsclient.models.PressureIndicators;
 import com.example.androidthingsclient.models.SensorsData;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -8,6 +9,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -37,7 +40,9 @@ public class HumidityPresenter implements ValueEventListener {
     @Override
     public void onDataChange(DataSnapshot dataSnapshot) {
         SensorsData sensorsData = dataSnapshot.getValue(SensorsData.class);
-        callback.onHumidityLoaded(sensorsData.getHumidityIndicators());
+        Collection<HumidityIndicators> humidityIndicatorses = sensorsData.getHumidityIndicators().values();
+        ArrayList<HumidityIndicators> humidityIndicatorsArrayList = new ArrayList<>(humidityIndicatorses);
+        callback.onHumidityLoaded(humidityIndicatorsArrayList);
     }
 
     @Override

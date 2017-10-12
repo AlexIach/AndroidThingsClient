@@ -97,7 +97,7 @@ public class TemperatureFragment extends Fragment implements TemperaturePresente
         setTemperatyreTypeImage(currentTemperature.getType());
         DateTime currentDateTime = DateTime.now();
 
-        DateTime lastSyncDateTime = new DateTime(Long.valueOf(currentTemperature.getTime()), DateTimeZone.UTC);
+        DateTime lastSyncDateTime = new DateTime(Long.valueOf(currentTemperature.getTime()) * 1000);
         textViewTemperatureTime.setText("Last synced : " + dateFormatterProvider.periodFormatter().print(new Period(lastSyncDateTime, currentDateTime)) + " ago");
     }
 

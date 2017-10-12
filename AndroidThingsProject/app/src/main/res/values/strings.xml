@@ -1,3 +1,15 @@
 <resources>
     <string name="app_name">AndroidThingsProject</string>
+    <string name="humidity_type_low">Low</string>
+    <string name="humidity_type_normal">Normal</string>
+    <string name="humidity_type_high">High</string>
+    <string name="humidity">humidity</string>
+    <string name="temperature">temperature</string>
+    <string name="pressure">pressure</string>
+    <string name="temperature_type_cold">Cold</string>
+    <string name="temperature_type_normal">Normal</string>
+    <string name="temperature_type_hot">Hot</string>
+    <string name="pressure_type_low">Low</string>
+    <string name="pressure_type_normal">Normal</string>
+    <string name="pressure_type_high">High</string>
 </resources>

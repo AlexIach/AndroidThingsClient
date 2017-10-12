@@ -8,6 +8,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -37,7 +39,9 @@ public class TemperaturePresenter implements ValueEventListener {
     @Override
     public void onDataChange(DataSnapshot dataSnapshot) {
         SensorsData sensorsData = dataSnapshot.getValue(SensorsData.class);
-        callback.onTemperatureLoaded(sensorsData.getTemperatureIndicators());
+        Collection<TemperatureIndicators> temperatureIndicatorses = sensorsData.getTemperatureIndicators().values();
+        ArrayList<TemperatureIndicators> temperatureIndicatorsArrayList = new ArrayList<>(temperatureIndicatorses);
+        callback.onTemperatureLoaded(temperatureIndicatorsArrayList);
     }
 
     @Override

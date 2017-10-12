@@ -97,7 +97,7 @@ public class PressureFragment extends Fragment implements PressurePresenter.Pres
         //textViewPressureType.setText("Pressure  Type is " + currentPressure.getType());
         setPressureTypeImage(currentPressure.getType());
         DateTime currentDateTime = DateTime.now();
-        DateTime lastSyncDateTime = new DateTime(Long.valueOf(currentPressure.getTime()), DateTimeZone.UTC);
+        DateTime lastSyncDateTime = new DateTime(Long.valueOf(currentPressure.getTime()) * 1000);
         textViewPressureTime.setText("Last synced : " + dateFormatterProvider.periodFormatter().print(new Period(lastSyncDateTime, currentDateTime)) + " ago");
     }
 

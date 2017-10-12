@@ -1,15 +1,15 @@
-package com.example.androidthingsclient.models;
+package com.example.androidthingsproject.models;
 
-import java.util.HashMap;
+import java.util.List;
 
 /**
  * Created by aiachimov on 6/20/17.
  */
 
 public class SensorsData {
-    private HashMap<String, HumidityIndicators> humidityIndicators;
-    private HashMap<String, PressureIndicators> pressureIndicators;
-    private HashMap<String, TemperatureIndicators> temperatureIndicators;
+    private List<HumidityIndicators> humidityIndicators;
+    private List<PressureIndicators> pressureIndicators;
+    private List<TemperatureIndicators> temperatureIndicators;
     private boolean isBathRoomLightEnable;
     private boolean isKitchenLightEnable;
     private boolean isMainRoomLightEnable;
@@ -17,9 +17,9 @@ public class SensorsData {
     public SensorsData() {
     }
 
-    public SensorsData(HashMap<String, HumidityIndicators> humidityIndicators,
-                       HashMap<String, PressureIndicators> pressureIndicators,
-                       HashMap<String, TemperatureIndicators> temperatureIndicators,
+    public SensorsData(List<HumidityIndicators> humidityIndicators,
+                       List<PressureIndicators> pressureIndicators,
+                       List<TemperatureIndicators> temperatureIndicators,
                        boolean isBathRoomLightEnable, boolean isKitchenLightEnable,
                        boolean isMainRoomLightEnable) {
         this.humidityIndicators = humidityIndicators;
@@ -30,27 +30,27 @@ public class SensorsData {
         this.isMainRoomLightEnable = isMainRoomLightEnable;
     }
 
-    public HashMap<String,HumidityIndicators> getHumidityIndicators() {
+    public List<HumidityIndicators> getHumidityIndicators() {
         return humidityIndicators;
     }
 
-    public void setHumidityIndicators(HashMap<String, HumidityIndicators> humidityIndicators) {
+    public void setHumidityIndicators(List<HumidityIndicators> humidityIndicators) {
         this.humidityIndicators = humidityIndicators;
     }
 
-    public HashMap<String, PressureIndicators> getPressureIndicators() {
+    public List<PressureIndicators> getPressureIndicators() {
         return pressureIndicators;
     }
 
-    public void setPressureIndicators(HashMap<String, PressureIndicators> pressureIndicators) {
+    public void setPressureIndicators(List<PressureIndicators> pressureIndicators) {
         this.pressureIndicators = pressureIndicators;
     }
 
-    public HashMap<String, TemperatureIndicators> getTemperatureIndicators() {
+    public List<TemperatureIndicators> getTemperatureIndicators() {
         return temperatureIndicators;
     }
 
-    public void setTemperatureIndicators(HashMap<String,TemperatureIndicators> temperatureIndicators) {
+    public void setTemperatureIndicators(List<TemperatureIndicators> temperatureIndicators) {
         this.temperatureIndicators = temperatureIndicators;
     }
 

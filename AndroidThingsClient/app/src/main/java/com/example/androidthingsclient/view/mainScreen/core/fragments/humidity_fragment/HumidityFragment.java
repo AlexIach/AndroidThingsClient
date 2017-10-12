@@ -97,7 +97,7 @@ public class HumidityFragment extends Fragment implements HumidityPresenter.Humi
         //textViewHumidityType.setText("Humidity  Type is " + currentHumidity.getType());
         setHumidityTypeImage(currentHumidity.getType());
         DateTime currentDateTime = DateTime.now();
-        DateTime lastSyncDateTime = new DateTime(Long.valueOf(currentHumidity.getTime()), DateTimeZone.UTC);
+        DateTime lastSyncDateTime = new DateTime(Long.valueOf(currentHumidity.getTime()) * 1000);
         textViewHumidityTime.setText("Last synced : " + dateFormatterProvider.periodFormatter().print(new Period(lastSyncDateTime, currentDateTime)) + " ago");
     }
 

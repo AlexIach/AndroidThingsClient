@@ -2,12 +2,15 @@ package com.example.androidthingsclient.view.mainScreen.core.fragments.pressure_
 
 import com.example.androidthingsclient.models.PressureIndicators;
 import com.example.androidthingsclient.models.SensorsData;
+import com.example.androidthingsclient.models.TemperatureIndicators;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -37,7 +40,9 @@ public class PressurePresenter implements ValueEventListener {
     @Override
     public void onDataChange(DataSnapshot dataSnapshot) {
         SensorsData sensorsData = dataSnapshot.getValue(SensorsData.class);
-        callback.onPressureLoaded(sensorsData.getPressureIndicators());
+        Collection<PressureIndicators> pressureIndicatorses = sensorsData.getPressureIndicators().values();
+        ArrayList<PressureIndicators> pressureIndicatorsArrayList = new ArrayList<>(pressureIndicatorses);
+        callback.onPressureLoaded(pressureIndicatorsArrayList);
     }
 
     @Override
