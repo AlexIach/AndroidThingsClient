@@ -10,6 +10,8 @@ import com.example.androidthingsproject.data.DataLoaderPresenter;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.io.IOException;
+
 /**
  * Created by aiachimov on 10/11/17.
  */
@@ -34,7 +36,6 @@ public class AlarmManagerReceiver extends BroadcastReceiver {
         databaseReferenceHumidity.child(timeStamp.toString()).setValue(dataLoaderPresenter.getHumidityIndicators());
         databaseReferencePressure.child(timeStamp.toString()).setValue(dataLoaderPresenter.getPressureIndicators());
         databaseReferenceTemperature.child(timeStamp.toString()).setValue(dataLoaderPresenter.getTemperatureIndicators());
-
 
     }
 }

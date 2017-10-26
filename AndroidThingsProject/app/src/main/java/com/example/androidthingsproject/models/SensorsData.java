@@ -1,15 +1,15 @@
 package com.example.androidthingsproject.models;
 
-import java.util.List;
+import java.util.HashMap;
 
 /**
  * Created by aiachimov on 6/20/17.
  */
 
 public class SensorsData {
-    private List<HumidityIndicators> humidityIndicators;
-    private List<PressureIndicators> pressureIndicators;
-    private List<TemperatureIndicators> temperatureIndicators;
+    private HashMap<String, HumidityIndicators> humidityIndicators;
+    private HashMap<String, PressureIndicators> pressureIndicators;
+    private HashMap<String, TemperatureIndicators> temperatureIndicators;
     private boolean isBathRoomLightEnable;
     private boolean isKitchenLightEnable;
     private boolean isMainRoomLightEnable;
@@ -17,11 +17,7 @@ public class SensorsData {
     public SensorsData() {
     }
 
-    public SensorsData(List<HumidityIndicators> humidityIndicators,
-                       List<PressureIndicators> pressureIndicators,
-                       List<TemperatureIndicators> temperatureIndicators,
-                       boolean isBathRoomLightEnable, boolean isKitchenLightEnable,
-                       boolean isMainRoomLightEnable) {
+    public SensorsData(HashMap<String, HumidityIndicators> humidityIndicators, HashMap<String, PressureIndicators> pressureIndicators, HashMap<String, TemperatureIndicators> temperatureIndicators, boolean isBathRoomLightEnable, boolean isKitchenLightEnable, boolean isMainRoomLightEnable) {
         this.humidityIndicators = humidityIndicators;
         this.pressureIndicators = pressureIndicators;
         this.temperatureIndicators = temperatureIndicators;
@@ -30,28 +26,40 @@ public class SensorsData {
         this.isMainRoomLightEnable = isMainRoomLightEnable;
     }
 
-    public List<HumidityIndicators> getHumidityIndicators() {
+    public HashMap<String, HumidityIndicators> getHumidityIndicators() {
         return humidityIndicators;
     }
 
-    public void setHumidityIndicators(List<HumidityIndicators> humidityIndicators) {
+    public void setHumidityIndicators(HashMap<String, HumidityIndicators> humidityIndicators) {
         this.humidityIndicators = humidityIndicators;
     }
 
-    public List<PressureIndicators> getPressureIndicators() {
+    public HashMap<String, PressureIndicators> getPressureIndicators() {
         return pressureIndicators;
     }
 
-    public void setPressureIndicators(List<PressureIndicators> pressureIndicators) {
+    public void setPressureIndicators(HashMap<String, PressureIndicators> pressureIndicators) {
         this.pressureIndicators = pressureIndicators;
     }
 
-    public List<TemperatureIndicators> getTemperatureIndicators() {
+    public HashMap<String, TemperatureIndicators> getTemperatureIndicators() {
         return temperatureIndicators;
     }
 
-    public void setTemperatureIndicators(List<TemperatureIndicators> temperatureIndicators) {
+    public void setTemperatureIndicators(HashMap<String, TemperatureIndicators> temperatureIndicators) {
         this.temperatureIndicators = temperatureIndicators;
+    }
+
+    public boolean isBathRoomLightEnable() {
+        return isBathRoomLightEnable;
+    }
+
+    public boolean isKitchenLightEnable() {
+        return isKitchenLightEnable;
+    }
+
+    public boolean isMainRoomLightEnable() {
+        return isMainRoomLightEnable;
     }
 
     public boolean getIsBathRoomLightEnable() {

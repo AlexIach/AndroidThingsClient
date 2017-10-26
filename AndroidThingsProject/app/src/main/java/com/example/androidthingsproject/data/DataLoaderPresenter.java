@@ -1,7 +1,6 @@
 package com.example.androidthingsproject.data;
 
 import android.content.Context;
-import android.content.Intent;
 
 import com.example.androidthingsproject.R;
 import com.example.androidthingsproject.models.HumidityIndicators;
@@ -69,7 +68,7 @@ public class DataLoaderPresenter {
         int convertedValue = Integer.parseInt(value);
 
         if (sensor.equalsIgnoreCase(context.getString(R.string.humidity))) {
-            if(convertedValue <= LOWER_LIMIT_OF_HUMIDITY) {
+            if (convertedValue <= LOWER_LIMIT_OF_HUMIDITY) {
                 type = context.getString(R.string.humidity_type_low);
             } else if (convertedValue > LOWER_LIMIT_OF_HUMIDITY && convertedValue <= NORMAL_LIMIT_OF_HUMIDITY) {
                 type = context.getString(R.string.humidity_type_normal);
@@ -77,19 +76,19 @@ public class DataLoaderPresenter {
                 type = context.getString(R.string.humidity_type_high);
             }
 
-        } else if (sensor.equalsIgnoreCase(context.getString(R.string.temperature))){
-            if(convertedValue <= LOWER_LIMIT_OF_TEMPERATURE) {
+        } else if (sensor.equalsIgnoreCase(context.getString(R.string.temperature))) {
+            if (convertedValue <= LOWER_LIMIT_OF_TEMPERATURE) {
                 type = context.getString(R.string.temperature_type_cold);
-            } else if(convertedValue > LOWER_LIMIT_OF_TEMPERATURE && convertedValue <= NORMAL_LIMIT_OF_TEMPERATURE) {
+            } else if (convertedValue > LOWER_LIMIT_OF_TEMPERATURE && convertedValue <= NORMAL_LIMIT_OF_TEMPERATURE) {
                 type = context.getString(R.string.temperature_type_normal);
             } else {
                 type = context.getString(R.string.temperature_type_hot);
             }
 
         } else {
-            if (convertedValue <= LOWER_LIMIT_OF_PRESSURE ) {
+            if (convertedValue <= LOWER_LIMIT_OF_PRESSURE) {
                 type = context.getString(R.string.pressure_type_low);
-            } else if(convertedValue > LOWER_LIMIT_OF_PRESSURE && convertedValue <= NORMAL_LIMIT_OF_PRESSURE) {
+            } else if (convertedValue > LOWER_LIMIT_OF_PRESSURE && convertedValue <= NORMAL_LIMIT_OF_PRESSURE) {
                 type = context.getString(R.string.pressure_type_normal);
             } else {
                 type = context.getString(R.string.pressure_type_high);
@@ -99,7 +98,7 @@ public class DataLoaderPresenter {
     }
 
     private String getCurrentTimeInTMPS() {
-        Long timeStamp = System.currentTimeMillis()/1000;
+        Long timeStamp = System.currentTimeMillis() / 1000;
         return timeStamp.toString();
     }
 
