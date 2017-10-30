@@ -6,50 +6,50 @@ package com.example.androidthingsproject.models;
 
 public class PressureIndicators {
 
-    private String qrCodeId;
-    private String time;
-    private String type;
-    private String value;
+  private String qrCodeId;
+  private String time;
+  private String type;
+  private String value;
 
-    public PressureIndicators() {
-    }
+  public PressureIndicators() {
+  }
 
-    public PressureIndicators(String qrCodeId, String time, String type, String value) {
-        this.qrCodeId = qrCodeId;
-        this.time = time;
-        this.type = type;
-        this.value = value;
-    }
+  public PressureIndicators(String qrCodeId, String time, String type, String value) {
+    this.qrCodeId = qrCodeId;
+    this.time = time;
+    this.type = type;
+    this.value = value;
+  }
 
-    public String getQrCodeId() {
-        return qrCodeId;
-    }
+  public String getQrCodeId() {
+    return qrCodeId;
+  }
 
-    public void setQrCodeId(String qrCodeId) {
-        this.qrCodeId = qrCodeId;
-    }
+  public void setQrCodeId(String qrCodeId) {
+    this.qrCodeId = qrCodeId;
+  }
 
-    public String getTime() {
-        return time;
-    }
+  public String getTime() {
+    return time;
+  }
 
-    public void setTime(String time) {
-        this.time = time;
-    }
+  public void setTime(String time) {
+    this.time = time;
+  }
 
-    public String getType() {
-        return type;
-    }
+  public String getType() {
+    return type;
+  }
 
-    public void setType(String type) {
-        this.type = type;
-    }
+  public void setType(String type) {
+    this.type = type;
+  }
 
-    public String getValue() {
-        return value;
-    }
+  public String getValue() {
+    return value;
+  }
 
-    public void setValue(String value) {
-        this.value = value;
-    }
+  public void setValue(String value) {
+    this.value = value;
+  }
 }

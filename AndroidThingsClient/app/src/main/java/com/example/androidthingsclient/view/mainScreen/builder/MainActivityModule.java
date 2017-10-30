@@ -7,8 +7,6 @@ import com.example.androidthingsclient.view.common.BaseModule;
 import com.example.androidthingsclient.view.mainScreen.MainActivity;
 import com.example.androidthingsclient.view.mainScreen.core.adapters.MainPagerAdapter;
 
-import javax.inject.Singleton;
-
 import dagger.Module;
 import dagger.Provides;
 
@@ -36,7 +34,7 @@ public class MainActivityModule extends BaseModule<MainActivity> {
 
     @Provides
     @MainActivityScope
-    public DateFormatterProvider provideDateFormatterProvider (Context context) {
+    public DateFormatterProvider provideDateFormatterProvider(Context context) {
         return new DateFormatterProvider(context);
     }
 }

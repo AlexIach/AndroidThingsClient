@@ -1,5 +1,8 @@
 package com.example.androidthingsproject.data.services;
 
+import com.example.androidthingsproject.MainActivity;
+import com.example.androidthingsproject.data.DataLoaderPresenter;
+
 import android.annotation.TargetApi;
 import android.app.job.JobParameters;
 import android.app.job.JobService;
@@ -7,9 +10,6 @@ import android.content.Intent;
 import android.os.Build;
 import android.os.Handler;
 import android.util.Log;
-
-import com.example.androidthingsproject.MainActivity;
-import com.example.androidthingsproject.data.DataLoaderPresenter;
 
 
 /**
@@ -19,24 +19,24 @@ import com.example.androidthingsproject.data.DataLoaderPresenter;
 @TargetApi(Build.VERSION_CODES.LOLLIPOP)
 public class JobSchedulerService extends JobService {
 
-    private DataLoaderPresenter dataLoaderPresenter;
+  private DataLoaderPresenter dataLoaderPresenter;
 
-    @Override
-    public void onCreate() {
-        super.onCreate();
-        Log.d(MainActivity.TAG, "Service created");
-    }
+  @Override
+  public void onCreate() {
+    super.onCreate();
+    Log.d(MainActivity.TAG, "Service created");
+  }
 
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        Log.d(MainActivity.TAG, "Service destroyed");
-    }
+  @Override
+  public void onDestroy() {
+    super.onDestroy();
+    Log.d(MainActivity.TAG, "Service destroyed");
+  }
 
-    @Override
-    public int onStartCommand(Intent intent, int flags, int startId) {
-        return START_NOT_STICKY;
-    }
+  @Override
+  public int onStartCommand(Intent intent, int flags, int startId) {
+    return START_NOT_STICKY;
+  }
 
     /*Runnable runnable = new Runnable() {
         @Override
@@ -65,30 +65,30 @@ public class JobSchedulerService extends JobService {
         }
     };*/
 
-    @Override
-    public boolean onStopJob(JobParameters params) {
-        Log.d(MainActivity.TAG, "on stop job: " + params.getJobId());
-        // Return false to drop the job.
-        return false;
-    }
+  @Override
+  public boolean onStopJob(JobParameters params) {
+    Log.d(MainActivity.TAG, "on stop job: " + params.getJobId());
+    // Return false to drop the job.
+    return false;
+  }
 
-    @Override
-    public boolean onStartJob(final JobParameters params) {
-        this.dataLoaderPresenter = new DataLoaderPresenter(getApplicationContext());
+  @Override
+  public boolean onStartJob(final JobParameters params) {
+    this.dataLoaderPresenter = new DataLoaderPresenter(getApplicationContext());
 
-        // Uses a handler to delay the execution of jobFinished().
-        Handler handler = new Handler();
-        handler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                //TODO Main work here
-                Log.d(MainActivity.TAG, "Inside run()");
-                jobFinished(params, false);
-            }
-        }, 2000);//2000 time to evaluate work.
-        Log.d(MainActivity.TAG, "on start job: " + params.getJobId());
+    // Uses a handler to delay the execution of jobFinished().
+    Handler handler = new Handler();
+    handler.postDelayed(new Runnable() {
+      @Override
+      public void run() {
+        //TODO Main work here
+        Log.d(MainActivity.TAG, "Inside run()");
+        jobFinished(params, false);
+      }
+    }, 2000);//2000 time to evaluate work.
+    Log.d(MainActivity.TAG, "on start job: " + params.getJobId());
 
-        // All works is completed - > return false*/
-        return true; // if work is not done yet return true
-    }
+    // All works is completed - > return false*/
+    return true; // if work is not done yet return true
+  }
 }

@@ -1,11 +1,17 @@
 package com.example.androidthingsclient.view.mainScreen.core.fragments.humidity_fragment;
 
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.content.Context;
+import android.content.Intent;
 import android.graphics.Typeface;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.constraint.ConstraintLayout;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -94,11 +100,17 @@ public class HumidityFragment extends Fragment implements HumidityPresenter.Humi
         Log.d("TAG", "HumidityFragmentList size is " + humidityList.size());
         HumidityIndicators currentHumidity = humidityList.get(humidityList.size() - 1);
         textViewHumidityValue.setText("Humidity  Value is " + currentHumidity.getValue() + "%");
-        //textViewHumidityType.setText("Humidity  Type is " + currentHumidity.getType());
         setHumidityTypeImage(currentHumidity.getType());
         DateTime currentDateTime = DateTime.now();
         DateTime lastSyncDateTime = new DateTime(Long.valueOf(currentHumidity.getTime()) * 1000);
         textViewHumidityTime.setText("Last synced : " + dateFormatterProvider.periodFormatter().print(new Period(lastSyncDateTime, currentDateTime)) + " ago");
+/*
+        if (isSmokeExist) {
+            Log.d("Test", "isSmoke Exist = " + isSmokeExist);
+            if (this.isVisible()) {
+                sendNotification();
+            }
+        }*/
     }
 
     @Override
@@ -145,5 +157,25 @@ public class HumidityFragment extends Fragment implements HumidityPresenter.Humi
         } else {
             textViewHumidityType.setImageResource(R.drawable.humidity_normal);
         }
+    }
+
+    public void sendNotification() {
+        NotificationCompat.Builder mBuilder =
+                new NotificationCompat.Builder(getContext())
+                        .setSmallIcon(R.drawable.ic_aler)
+                        .setContentTitle("Alert")
+                        .setContentText("Smoke is detected");
+
+        NotificationManager mNotificationManager = (NotificationManager) getActivity().getSystemService(Context.NOTIFICATION_SERVICE);
+        Intent notificationIntent = new Intent(Intent.ACTION_CALL);
+        notificationIntent.setData(Uri.parse("tel:901"));
+        notificationIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK
+            /* | Intent.FLAG_ACTIVITY_SINGLE_TOP*/);
+
+        PendingIntent contentIntent = PendingIntent.getActivity(getContext(), 1,
+                notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+
+        mBuilder.setContentIntent(contentIntent);
+        mNotificationManager.notify(001, mBuilder.build());
     }
 }

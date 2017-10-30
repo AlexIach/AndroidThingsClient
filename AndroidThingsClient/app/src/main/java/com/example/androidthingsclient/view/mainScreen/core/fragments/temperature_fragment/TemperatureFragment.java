@@ -1,11 +1,17 @@
 package com.example.androidthingsclient.view.mainScreen.core.fragments.temperature_fragment;
 
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.content.Context;
+import android.content.Intent;
 import android.graphics.Typeface;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.constraint.ConstraintLayout;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,10 +24,10 @@ import com.example.androidthingsclient.Injector;
 import com.example.androidthingsclient.R;
 import com.example.androidthingsclient.models.TemperatureIndicators;
 import com.example.androidthingsclient.util.DateFormatterProvider;
+import com.example.androidthingsclient.util.ScreenNavigationManager;
 import com.example.androidthingsclient.view.mainScreen.core.fragments.temperature_fragment.core.TemperaturePresenter;
 
 import org.joda.time.DateTime;
-import org.joda.time.DateTimeZone;
 import org.joda.time.Period;
 
 import java.util.List;
@@ -38,6 +44,8 @@ import butterknife.ButterKnife;
 public class TemperatureFragment extends Fragment implements TemperaturePresenter.TemperatureCallBack {
 
     private static final int SLEEP_MILISEC = 1600;
+    private final int CALL_REQUEST = 100;
+
     @Inject
     TemperaturePresenter temperaturePresenter;
     @Inject
@@ -54,6 +62,9 @@ public class TemperatureFragment extends Fragment implements TemperaturePresente
 
     @BindView(R.id.lottie_animation_view_loading)
     LottieAnimationView lottieAnimationViewTemperature;
+
+    @Inject
+    ScreenNavigationManager screenNavigationManager;
 
     public static TemperatureFragment newInstance() {
         return new TemperatureFragment();
@@ -90,7 +101,7 @@ public class TemperatureFragment extends Fragment implements TemperaturePresente
     }
 
     @Override
-    public void onTemperatureLoaded(List<TemperatureIndicators> temperatureList) {
+    public void onTemperatureLoaded(List<TemperatureIndicators> temperatureList, boolean isSmokeExist) {
         Log.d("TAG", "TemperatureFragmentList size is " + temperatureList.size());
         TemperatureIndicators currentTemperature = temperatureList.get(temperatureList.size() - 1);
         textViewTemperatureValue.setText("Current temperature is " + currentTemperature.getValue());
@@ -99,6 +110,12 @@ public class TemperatureFragment extends Fragment implements TemperaturePresente
 
         DateTime lastSyncDateTime = new DateTime(Long.valueOf(currentTemperature.getTime()) * 1000);
         textViewTemperatureTime.setText("Last synced : " + dateFormatterProvider.periodFormatter().print(new Period(lastSyncDateTime, currentDateTime)) + " ago");
+
+
+        if (isSmokeExist) {
+            Log.d("Test", "isSmoke Exist = " + isSmokeExist);
+            sendNotification();
+        }
     }
 
     @Override
@@ -143,5 +160,24 @@ public class TemperatureFragment extends Fragment implements TemperaturePresente
         } else {
             textViewTemperatureType.setImageResource(R.drawable.normal);
         }
+    }
+
+    public void sendNotification() {
+        NotificationCompat.Builder mBuilder =
+                new NotificationCompat.Builder(getContext())
+                        .setSmallIcon(R.drawable.ic_googleg_color_24dp)
+                        .setContentTitle("Alert")
+                        .setContentText("Smoke is detected");
+
+        NotificationManager mNotificationManager = (NotificationManager) getActivity().getSystemService(Context.NOTIFICATION_SERVICE);
+
+        Intent notificationIntent = new Intent(Intent.ACTION_CALL);
+        notificationIntent.setData(Uri.parse("tel:901"));
+
+        PendingIntent contentIntent = PendingIntent.getActivity(getContext(), 0,
+                notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+
+        mBuilder.setContentIntent(contentIntent);
+        mNotificationManager.notify(001, mBuilder.build());
     }
 }

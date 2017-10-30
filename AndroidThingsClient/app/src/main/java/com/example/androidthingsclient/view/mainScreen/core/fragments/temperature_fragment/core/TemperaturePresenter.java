@@ -22,6 +22,7 @@ public class TemperaturePresenter implements ValueEventListener {
 
     private TemperatureCallBack callback;
 
+
     @Inject
     public TemperaturePresenter() {
     }
@@ -41,7 +42,7 @@ public class TemperaturePresenter implements ValueEventListener {
         SensorsData sensorsData = dataSnapshot.getValue(SensorsData.class);
         Collection<TemperatureIndicators> temperatureIndicatorses = sensorsData.getTemperatureIndicators().values();
         ArrayList<TemperatureIndicators> temperatureIndicatorsArrayList = new ArrayList<>(temperatureIndicatorses);
-        callback.onTemperatureLoaded(temperatureIndicatorsArrayList);
+        callback.onTemperatureLoaded(temperatureIndicatorsArrayList, sensorsData.getIsSmokeExist());
     }
 
     @Override
@@ -49,9 +50,8 @@ public class TemperaturePresenter implements ValueEventListener {
         callback.onFailedGetTemperature("Error Code  is " + databaseError.getCode());
     }
 
-
     public interface TemperatureCallBack {
-        void onTemperatureLoaded(List<TemperatureIndicators> temperatureList);
+        void onTemperatureLoaded(List<TemperatureIndicators> temperatureList, boolean isSmokeExist);
 
         void onFailedGetTemperature(String error);
     }

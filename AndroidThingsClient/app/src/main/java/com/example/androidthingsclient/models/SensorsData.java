@@ -13,6 +13,7 @@ public class SensorsData {
     private boolean isBathRoomLightEnable;
     private boolean isKitchenLightEnable;
     private boolean isMainRoomLightEnable;
+    private boolean isSmokeExist;
 
     public SensorsData() {
     }
@@ -21,13 +22,14 @@ public class SensorsData {
                        HashMap<String, PressureIndicators> pressureIndicators,
                        HashMap<String, TemperatureIndicators> temperatureIndicators,
                        boolean isBathRoomLightEnable, boolean isKitchenLightEnable,
-                       boolean isMainRoomLightEnable) {
+                       boolean isMainRoomLightEnable, boolean isSmokeExist) {
         this.humidityIndicators = humidityIndicators;
         this.pressureIndicators = pressureIndicators;
         this.temperatureIndicators = temperatureIndicators;
         this.isBathRoomLightEnable = isBathRoomLightEnable;
         this.isKitchenLightEnable = isKitchenLightEnable;
         this.isMainRoomLightEnable = isMainRoomLightEnable;
+        this.isSmokeExist = isSmokeExist;
     }
 
     public HashMap<String,HumidityIndicators> getHumidityIndicators() {
@@ -76,5 +78,25 @@ public class SensorsData {
 
     public void setMainRoomLightEnable(boolean mainRoomLightEnable) {
         isMainRoomLightEnable = mainRoomLightEnable;
+    }
+
+    public boolean isBathRoomLightEnable() {
+        return isBathRoomLightEnable;
+    }
+
+    public boolean isKitchenLightEnable() {
+        return isKitchenLightEnable;
+    }
+
+    public boolean isMainRoomLightEnable() {
+        return isMainRoomLightEnable;
+    }
+
+    public boolean getIsSmokeExist() {
+        return isSmokeExist;
+    }
+
+    public void setSmokeExist(boolean smokeExist) {
+        isSmokeExist = smokeExist;
     }
 }

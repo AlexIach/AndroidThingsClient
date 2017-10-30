@@ -1,10 +1,10 @@
 package com.example.androidthingsproject.drivers.bmp180;
 
-import android.util.Log;
+import java.io.IOException;
 
 import com.google.android.things.pio.I2cDevice;
 
-import java.io.IOException;
+import android.util.Log;
 
 import static android.content.ContentValues.TAG;
 
@@ -14,42 +14,42 @@ import static android.content.ContentValues.TAG;
 
 public class I2cUtils {
 
-    private static final boolean DEBUG = false;
+  private static final boolean DEBUG = false;
 
-    static int readU8(I2cDevice device, int reg) throws IOException {
-        int result = 0;
-        try {
-            result = device.readRegByte(reg);
-            if (DEBUG)
-                Log.d(TAG, "readU8: (0x" + Integer.toHexString(result) +
-                        ") from reg (0x" + Integer.toHexString(reg) + ")");
-        } catch (Exception e) {
-            Log.e(TAG, "readU8: ", e);
-        }
-        return result;
+  static int readU8(I2cDevice device, int reg) throws IOException {
+    int result = 0;
+    try {
+      result = device.readRegByte(reg);
+      if (DEBUG)
+        Log.d(TAG, "readU8: (0x" + Integer.toHexString(result) +
+          ") from reg (0x" + Integer.toHexString(reg) + ")");
+    } catch (Exception e) {
+      Log.e(TAG, "readU8: ", e);
     }
+    return result;
+  }
 
-    static int readS8(I2cDevice device, int reg) throws IOException {
-        int result = readU8(device, reg);
-        result = result > 127 ? result - 256 : result;
+  static int readS8(I2cDevice device, int reg) throws IOException {
+    int result = readU8(device, reg);
+    result = result > 127 ? result - 256 : result;
 
-        if (DEBUG)
-            Log.d(TAG, "returned  signed val" + result);
+    if (DEBUG)
+      Log.d(TAG, "returned  signed val" + result);
 
-        return result;
-    }
+    return result;
+  }
 
-    static int readU16BE(I2cDevice device, int register) throws IOException {
-        int hi = readU8(device, register);
-        int lo = readU8(device, register + 1);
-        return (hi << 8) + lo;
-    }
+  static int readU16BE(I2cDevice device, int register) throws IOException {
+    int hi = readU8(device, register);
+    int lo = readU8(device, register + 1);
+    return (hi << 8) + lo;
+  }
 
-    static int readS16BE(I2cDevice device, int register) throws IOException {
-        int hi = readS8(device, register);
-        int lo = readU8(device, register + 1);
-        return ((hi << 8) + lo);
-    }
+  static int readS16BE(I2cDevice device, int register) throws IOException {
+    int hi = readS8(device, register);
+    int lo = readU8(device, register + 1);
+    return ((hi << 8) + lo);
+  }
 
 //    public static int readU16LE(I2cDevice device, int register) throws IOException {
 //        int hi = readU8(device,  register);

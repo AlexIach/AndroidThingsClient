@@ -1,11 +1,17 @@
 package com.example.androidthingsclient.view.mainScreen.core.fragments.pressure_fragment;
 
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.content.Context;
+import android.content.Intent;
 import android.graphics.Typeface;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.constraint.ConstraintLayout;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,7 +27,6 @@ import com.example.androidthingsclient.util.DateFormatterProvider;
 import com.example.androidthingsclient.view.mainScreen.core.fragments.pressure_fragment.core.PressurePresenter;
 
 import org.joda.time.DateTime;
-import org.joda.time.DateTimeZone;
 import org.joda.time.Period;
 
 import java.util.List;
@@ -94,11 +99,17 @@ public class PressureFragment extends Fragment implements PressurePresenter.Pres
         Log.d("TAG", "PressureFragmentList size is " + pressureList.size());
         PressureIndicators currentPressure = pressureList.get(pressureList.size() - 1);
         textViewPressureValue.setText("Pressure  Value is " + currentPressure.getValue());
-        //textViewPressureType.setText("Pressure  Type is " + currentPressure.getType());
         setPressureTypeImage(currentPressure.getType());
         DateTime currentDateTime = DateTime.now();
         DateTime lastSyncDateTime = new DateTime(Long.valueOf(currentPressure.getTime()) * 1000);
         textViewPressureTime.setText("Last synced : " + dateFormatterProvider.periodFormatter().print(new Period(lastSyncDateTime, currentDateTime)) + " ago");
+
+     /*   if (isSmokeExist) {
+            Log.d("Test", "isSmoke Exist = " + isSmokeExist);
+            if (this.isVisible()) {
+                sendNotification();
+            }
+        }*/
     }
 
     @Override
@@ -145,5 +156,25 @@ public class PressureFragment extends Fragment implements PressurePresenter.Pres
         } else {
             textViewPressureType.setImageResource(R.drawable.pressure_normal);
         }
+    }
+
+    public void sendNotification() {
+        NotificationCompat.Builder mBuilder =
+                new NotificationCompat.Builder(getContext())
+                        .setSmallIcon(R.drawable.ic_aler)
+                        .setContentTitle("Alert")
+                        .setContentText("Smoke is detected");
+
+        NotificationManager mNotificationManager = (NotificationManager) getActivity().getSystemService(Context.NOTIFICATION_SERVICE);
+        Intent notificationIntent = new Intent(Intent.ACTION_CALL);
+        notificationIntent.setData(Uri.parse("tel:901"));
+        notificationIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP
+                | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+
+        PendingIntent contentIntent = PendingIntent.getActivity(getContext(), 0,
+                notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+
+        mBuilder.setContentIntent(contentIntent);
+        mNotificationManager.notify(001, mBuilder.build());
     }
 }
