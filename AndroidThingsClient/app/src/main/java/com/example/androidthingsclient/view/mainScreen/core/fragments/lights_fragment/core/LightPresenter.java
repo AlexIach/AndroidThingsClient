@@ -41,6 +41,7 @@ public class LightPresenter implements ValueEventListener {
         DatabaseReference databaseReferenceChildKithcen = databaseReference.child(IS_KITCHEN_LIGHT_ENABLE_STATUS);
         databaseReferenceChildKithcen.setValue(isKitchenLightEnable);
     }
+
     public void uploadBathroomLightStatus(boolean isBathroomLightEnable) {
         DatabaseReference databaseReferenceChildBathroom = databaseReference.child(IS_BATHROOM_LIGHT_ENABLE_STATUS);
         databaseReferenceChildBathroom.setValue(isBathroomLightEnable);

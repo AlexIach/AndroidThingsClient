@@ -1,6 +1,11 @@
 package com.example.androidthingsclient.view.mainScreen;
 
+import android.Manifest;
+import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 
@@ -20,6 +25,8 @@ import devlight.io.library.ntb.NavigationTabBar;
 
 public class MainActivity extends AppCompatActivity {
 
+    private static final int REQUEST_PHONE_CALL = 1;
+
     @Inject
     ScreenNavigationManager screenNavigationManager;
     @Inject
@@ -37,6 +44,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
+        initAndCheckPermissions();
 
         Injector.INSTANCE.initMainActivityComponent(this);
         Injector.INSTANCE.getMainActivityComponent().inject(this);
@@ -120,5 +128,13 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         }, 500);
+    }
+
+    private void initAndCheckPermissions() {
+        if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            if (ContextCompat.checkSelfPermission(this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+                ActivityCompat.requestPermissions(MainActivity.this, new String[]{Manifest.permission.CALL_PHONE}, REQUEST_PHONE_CALL);
+            }
+        }
     }
 }

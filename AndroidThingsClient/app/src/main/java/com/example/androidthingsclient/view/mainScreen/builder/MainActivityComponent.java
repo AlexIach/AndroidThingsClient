@@ -2,8 +2,8 @@ package com.example.androidthingsclient.view.mainScreen.builder;
 
 import com.example.androidthingsclient.application.builder.AndroidThingsClientComponent;
 import com.example.androidthingsclient.view.mainScreen.MainActivity;
-import com.example.androidthingsclient.view.mainScreen.core.fragments.lights_fragment.LightsFragment;
 import com.example.androidthingsclient.view.mainScreen.core.fragments.humidity_fragment.HumidityFragment;
+import com.example.androidthingsclient.view.mainScreen.core.fragments.lights_fragment.LightsFragment;
 import com.example.androidthingsclient.view.mainScreen.core.fragments.pressure_fragment.PressureFragment;
 import com.example.androidthingsclient.view.mainScreen.core.fragments.temperature_fragment.TemperatureFragment;
 

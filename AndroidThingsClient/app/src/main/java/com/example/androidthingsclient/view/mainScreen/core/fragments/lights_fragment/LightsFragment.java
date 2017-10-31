@@ -45,20 +45,18 @@ public class LightsFragment extends Fragment implements LightPresenter.LightCall
     ToggleButton toggleButtonBathroom;
     @BindView(R.id.toggleButtonMainRoom)
     ToggleButton toggleButtonMainRoom;
+    @Inject
+    LightPresenter lightPresenter;
+
+    public static LightsFragment newInstance() {
+        return new LightsFragment();
+    }
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         lightPresenter.setUpCallback(this);
         lightPresenter.onLoadLightStatuses();
-    }
-
-    @Inject
-    LightPresenter lightPresenter;
-
-
-    public static LightsFragment newInstance() {
-        return new LightsFragment();
     }
 
     @Override

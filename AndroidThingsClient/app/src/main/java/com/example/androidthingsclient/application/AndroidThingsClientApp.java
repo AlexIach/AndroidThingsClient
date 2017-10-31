@@ -12,6 +12,10 @@ public class AndroidThingsClientApp extends Application {
 
     private static AndroidThingsClientApp androidThingsClientApp;
 
+    public static AndroidThingsClientApp getInstance() {
+        return androidThingsClientApp;
+    }
+
     @Override
     public void onCreate() {
         super.onCreate();
@@ -21,9 +25,5 @@ public class AndroidThingsClientApp extends Application {
 
     public void initDependencies() {
         Injector.INSTANCE.initAndroidThingsClientComponent(this);
-    }
-
-    public static AndroidThingsClientApp getInstance() {
-        return androidThingsClientApp;
     }
 }

@@ -2,7 +2,6 @@ package com.example.androidthingsclient.view.mainScreen.core.fragments.pressure_
 
 import com.example.androidthingsclient.models.PressureIndicators;
 import com.example.androidthingsclient.models.SensorsData;
-import com.example.androidthingsclient.models.TemperatureIndicators;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;

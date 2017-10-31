@@ -50,5 +50,7 @@
     <string name="mytrips_flight_details_day"> d</string>
     <string name="mytrips_flight_details_minutes"> min</string>
     <string name="weeks"> w</string>
+    <string name="alert_message">Alert</string>
+    <string name="smoke_detected_message">Smoke is detected</string>
 
 </resources>

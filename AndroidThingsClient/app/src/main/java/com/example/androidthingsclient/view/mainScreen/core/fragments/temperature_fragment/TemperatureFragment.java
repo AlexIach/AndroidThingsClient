@@ -1,5 +1,6 @@
 package com.example.androidthingsclient.view.mainScreen.core.fragments.temperature_fragment;
 
+import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
@@ -113,14 +114,46 @@ public class TemperatureFragment extends Fragment implements TemperaturePresente
 
 
         if (isSmokeExist) {
-            Log.d("Test", "isSmoke Exist = " + isSmokeExist);
-            sendNotification();
+            if (this.isVisible()) {
+                sendNotification();
+            }
         }
     }
 
     @Override
     public void onFailedGetTemperature(String error) {
         Log.d("TAG", "Error is " + error);
+    }
+
+    private void setTemperatyreTypeImage(String temperatureType) {
+        if (temperatureType.equalsIgnoreCase("Cold")) {
+            textViewTemperatureType.setImageResource(R.drawable.cold);
+        } else if (temperatureType.equalsIgnoreCase("Hot")) {
+            textViewTemperatureType.setImageResource(R.drawable.warm);
+        } else {
+            textViewTemperatureType.setImageResource(R.drawable.normal);
+        }
+    }
+
+    public void sendNotification() {
+        NotificationManager mNotificationManager = (NotificationManager) getActivity().getSystemService(Context.NOTIFICATION_SERVICE);
+
+        Intent notificationIntent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:901"));
+        notificationIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        PendingIntent pendingIntent = PendingIntent.getActivity(getContext(), 0, notificationIntent, PendingIntent.FLAG_CANCEL_CURRENT);
+
+        NotificationCompat.Builder mBuilder =
+                new NotificationCompat.Builder(getContext())
+                        .setSmallIcon(R.drawable.ic_aler)
+                        .setContentTitle(getString(R.string.alert_message))
+                        .setContentText(getString(R.string.smoke_detected_message))
+                        .setContentIntent(pendingIntent);
+
+        Notification notification = mBuilder.build();
+        notification.flags |= Notification.FLAG_AUTO_CANCEL;
+
+
+        mNotificationManager.notify(0, notification);
     }
 
     class Task extends AsyncTask<String, Integer, Boolean> {
@@ -150,34 +183,5 @@ public class TemperatureFragment extends Fragment implements TemperaturePresente
             }
             return null;
         }
-    }
-
-    private void setTemperatyreTypeImage(String temperatureType) {
-        if (temperatureType.equalsIgnoreCase("Cold")) {
-            textViewTemperatureType.setImageResource(R.drawable.cold);
-        } else if (temperatureType.equalsIgnoreCase("Hot")) {
-            textViewTemperatureType.setImageResource(R.drawable.warm);
-        } else {
-            textViewTemperatureType.setImageResource(R.drawable.normal);
-        }
-    }
-
-    public void sendNotification() {
-        NotificationCompat.Builder mBuilder =
-                new NotificationCompat.Builder(getContext())
-                        .setSmallIcon(R.drawable.ic_googleg_color_24dp)
-                        .setContentTitle("Alert")
-                        .setContentText("Smoke is detected");
-
-        NotificationManager mNotificationManager = (NotificationManager) getActivity().getSystemService(Context.NOTIFICATION_SERVICE);
-
-        Intent notificationIntent = new Intent(Intent.ACTION_CALL);
-        notificationIntent.setData(Uri.parse("tel:901"));
-
-        PendingIntent contentIntent = PendingIntent.getActivity(getContext(), 0,
-                notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
-
-        mBuilder.setContentIntent(contentIntent);
-        mNotificationManager.notify(001, mBuilder.build());
     }
 }

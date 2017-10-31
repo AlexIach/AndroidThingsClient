@@ -117,6 +117,36 @@ public class PressureFragment extends Fragment implements PressurePresenter.Pres
         Log.d("TAG", "Error is " + error);
     }
 
+    private void setPressureTypeImage(String temperatureType) {
+        if (temperatureType.equalsIgnoreCase("Low")) {
+            textViewPressureType.setImageResource(R.drawable.pressure_low);
+        } else if (temperatureType.equalsIgnoreCase("High")) {
+            textViewPressureType.setImageResource(R.drawable.pressure_high);
+        } else {
+            textViewPressureType.setImageResource(R.drawable.pressure_normal);
+        }
+    }
+
+    public void sendNotification() {
+        NotificationCompat.Builder mBuilder =
+                new NotificationCompat.Builder(getContext())
+                        .setSmallIcon(R.drawable.ic_aler)
+                        .setContentTitle("Alert")
+                        .setContentText("Smoke is detected");
+
+        NotificationManager mNotificationManager = (NotificationManager) getActivity().getSystemService(Context.NOTIFICATION_SERVICE);
+        Intent notificationIntent = new Intent(Intent.ACTION_CALL);
+        notificationIntent.setData(Uri.parse("tel:901"));
+        notificationIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP
+                | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+
+        PendingIntent contentIntent = PendingIntent.getActivity(getContext(), 0,
+                notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+
+        mBuilder.setContentIntent(contentIntent);
+        mNotificationManager.notify(001, mBuilder.build());
+    }
+
     class Task extends AsyncTask<String, Integer, Boolean> {
         @Override
         protected void onPreExecute() {
@@ -146,35 +176,5 @@ public class PressureFragment extends Fragment implements PressurePresenter.Pres
             }
             return null;
         }
-    }
-
-    private void setPressureTypeImage(String temperatureType) {
-        if (temperatureType.equalsIgnoreCase("Low")) {
-            textViewPressureType.setImageResource(R.drawable.pressure_low);
-        } else if (temperatureType.equalsIgnoreCase("High")) {
-            textViewPressureType.setImageResource(R.drawable.pressure_high);
-        } else {
-            textViewPressureType.setImageResource(R.drawable.pressure_normal);
-        }
-    }
-
-    public void sendNotification() {
-        NotificationCompat.Builder mBuilder =
-                new NotificationCompat.Builder(getContext())
-                        .setSmallIcon(R.drawable.ic_aler)
-                        .setContentTitle("Alert")
-                        .setContentText("Smoke is detected");
-
-        NotificationManager mNotificationManager = (NotificationManager) getActivity().getSystemService(Context.NOTIFICATION_SERVICE);
-        Intent notificationIntent = new Intent(Intent.ACTION_CALL);
-        notificationIntent.setData(Uri.parse("tel:901"));
-        notificationIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP
-                | Intent.FLAG_ACTIVITY_SINGLE_TOP);
-
-        PendingIntent contentIntent = PendingIntent.getActivity(getContext(), 0,
-                notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
-
-        mBuilder.setContentIntent(contentIntent);
-        mNotificationManager.notify(001, mBuilder.build());
     }
 }

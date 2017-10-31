@@ -14,12 +14,11 @@ public class SharedPrefUtil {
     public static final String QR_CODE_ID_KEY_SHARED_PREF = "QRCodeId";
 
     // TODO Dependency injection
+    private static final String PREFS_NAME = "qr_code_preference";
 
     @Inject
     public SharedPrefUtil() {
     }
-
-    private static final String PREFS_NAME = "qr_code_preference";
 
     public boolean saveQRPreference(Context context, String key, String value) {
         SharedPreferences settings = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);

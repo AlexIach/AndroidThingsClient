@@ -1,7 +1,6 @@
 package com.example.androidthingsclient.view.mainScreen.core.fragments.humidity_fragment.core;
 
 import com.example.androidthingsclient.models.HumidityIndicators;
-import com.example.androidthingsclient.models.PressureIndicators;
 import com.example.androidthingsclient.models.SensorsData;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;

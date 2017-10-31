@@ -32,7 +32,7 @@ public class SensorsData {
         this.isSmokeExist = isSmokeExist;
     }
 
-    public HashMap<String,HumidityIndicators> getHumidityIndicators() {
+    public HashMap<String, HumidityIndicators> getHumidityIndicators() {
         return humidityIndicators;
     }
 
@@ -52,7 +52,7 @@ public class SensorsData {
         return temperatureIndicators;
     }
 
-    public void setTemperatureIndicators(HashMap<String,TemperatureIndicators> temperatureIndicators) {
+    public void setTemperatureIndicators(HashMap<String, TemperatureIndicators> temperatureIndicators) {
         this.temperatureIndicators = temperatureIndicators;
     }
 
@@ -60,11 +60,23 @@ public class SensorsData {
         return isBathRoomLightEnable;
     }
 
+    public boolean getIsKitchenLightEnable() {
+        return isKitchenLightEnable;
+    }
+
+    public boolean getIsMainRoomLightEnable() {
+        return isMainRoomLightEnable;
+    }
+
+    public boolean isBathRoomLightEnable() {
+        return isBathRoomLightEnable;
+    }
+
     public void setBathRoomLightEnable(boolean bathRoomLightEnable) {
         isBathRoomLightEnable = bathRoomLightEnable;
     }
 
-    public boolean getIsKitchenLightEnable() {
+    public boolean isKitchenLightEnable() {
         return isKitchenLightEnable;
     }
 
@@ -72,24 +84,12 @@ public class SensorsData {
         isKitchenLightEnable = kitchenLightEnable;
     }
 
-    public boolean getIsMainRoomLightEnable() {
+    public boolean isMainRoomLightEnable() {
         return isMainRoomLightEnable;
     }
 
     public void setMainRoomLightEnable(boolean mainRoomLightEnable) {
         isMainRoomLightEnable = mainRoomLightEnable;
-    }
-
-    public boolean isBathRoomLightEnable() {
-        return isBathRoomLightEnable;
-    }
-
-    public boolean isKitchenLightEnable() {
-        return isKitchenLightEnable;
-    }
-
-    public boolean isMainRoomLightEnable() {
-        return isMainRoomLightEnable;
     }
 
     public boolean getIsSmokeExist() {

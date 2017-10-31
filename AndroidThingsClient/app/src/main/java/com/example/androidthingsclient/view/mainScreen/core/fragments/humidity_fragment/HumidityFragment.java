@@ -27,7 +27,6 @@ import com.example.androidthingsclient.util.DateFormatterProvider;
 import com.example.androidthingsclient.view.mainScreen.core.fragments.humidity_fragment.core.HumidityPresenter;
 
 import org.joda.time.DateTime;
-import org.joda.time.DateTimeZone;
 import org.joda.time.Period;
 
 import java.util.List;
@@ -118,6 +117,36 @@ public class HumidityFragment extends Fragment implements HumidityPresenter.Humi
         Log.d("TAG", "Error is " + error);
     }
 
+    private void setHumidityTypeImage(String temperatureType) {
+        if (temperatureType.equalsIgnoreCase("Low")) {
+            textViewHumidityType.setImageResource(R.drawable.humidity_low);
+        } else if (temperatureType.equalsIgnoreCase("High")) {
+            textViewHumidityType.setImageResource(R.drawable.humidity_high);
+        } else {
+            textViewHumidityType.setImageResource(R.drawable.humidity_normal);
+        }
+    }
+
+    public void sendNotification() {
+        NotificationCompat.Builder mBuilder =
+                new NotificationCompat.Builder(getContext())
+                        .setSmallIcon(R.drawable.ic_aler)
+                        .setContentTitle("Alert")
+                        .setContentText("Smoke is detected");
+
+        NotificationManager mNotificationManager = (NotificationManager) getActivity().getSystemService(Context.NOTIFICATION_SERVICE);
+        Intent notificationIntent = new Intent(Intent.ACTION_CALL);
+        notificationIntent.setData(Uri.parse("tel:901"));
+        notificationIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK
+            /* | Intent.FLAG_ACTIVITY_SINGLE_TOP*/);
+
+        PendingIntent contentIntent = PendingIntent.getActivity(getContext(), 1,
+                notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+
+        mBuilder.setContentIntent(contentIntent);
+        mNotificationManager.notify(001, mBuilder.build());
+    }
+
     class Task extends AsyncTask<String, Integer, Boolean> {
         @Override
         protected void onPreExecute() {
@@ -147,35 +176,5 @@ public class HumidityFragment extends Fragment implements HumidityPresenter.Humi
             }
             return null;
         }
-    }
-
-    private void setHumidityTypeImage(String temperatureType) {
-        if (temperatureType.equalsIgnoreCase("Low")) {
-            textViewHumidityType.setImageResource(R.drawable.humidity_low);
-        } else if (temperatureType.equalsIgnoreCase("High")) {
-            textViewHumidityType.setImageResource(R.drawable.humidity_high);
-        } else {
-            textViewHumidityType.setImageResource(R.drawable.humidity_normal);
-        }
-    }
-
-    public void sendNotification() {
-        NotificationCompat.Builder mBuilder =
-                new NotificationCompat.Builder(getContext())
-                        .setSmallIcon(R.drawable.ic_aler)
-                        .setContentTitle("Alert")
-                        .setContentText("Smoke is detected");
-
-        NotificationManager mNotificationManager = (NotificationManager) getActivity().getSystemService(Context.NOTIFICATION_SERVICE);
-        Intent notificationIntent = new Intent(Intent.ACTION_CALL);
-        notificationIntent.setData(Uri.parse("tel:901"));
-        notificationIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK
-            /* | Intent.FLAG_ACTIVITY_SINGLE_TOP*/);
-
-        PendingIntent contentIntent = PendingIntent.getActivity(getContext(), 1,
-                notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
-
-        mBuilder.setContentIntent(contentIntent);
-        mNotificationManager.notify(001, mBuilder.build());
     }
 }
