@@ -109,16 +109,16 @@ public class DataLoaderPresenter {
 
   private String simulateTemperature() {
     Random random = new Random(System.currentTimeMillis());
-    return Integer.toString(random.nextInt((25 - 23) + 1) + 23);
+    return Integer.toString(random.nextInt((25 - 24) + 1) + 24);
   }
 
   private String simulateHumidity() {
     Random random = new Random(System.currentTimeMillis());
-    return Integer.toString(random.nextInt((55 - 50) + 1) + 50);
+    return Integer.toString(random.nextInt((45 - 44) + 1) + 44);
   }
 
   private String simulatePressure() {
     Random random = new Random(System.currentTimeMillis());
-    return Integer.toString(random.nextInt((760 - 750) + 1) + 750);
+    return Integer.toString(random.nextInt((760 - 758) + 1) + 758);
   }
 }

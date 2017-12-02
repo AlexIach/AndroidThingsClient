@@ -22,6 +22,7 @@ import android.widget.TextView;
 import com.airbnb.lottie.LottieAnimationView;
 import com.example.androidthingsclient.Injector;
 import com.example.androidthingsclient.R;
+import com.example.androidthingsclient.models.HumidityIndicators;
 import com.example.androidthingsclient.models.PressureIndicators;
 import com.example.androidthingsclient.util.DateFormatterProvider;
 import com.example.androidthingsclient.view.mainScreen.core.fragments.pressure_fragment.core.PressurePresenter;
@@ -29,6 +30,8 @@ import com.example.androidthingsclient.view.mainScreen.core.fragments.pressure_f
 import org.joda.time.DateTime;
 import org.joda.time.Period;
 
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -97,6 +100,16 @@ public class PressureFragment extends Fragment implements PressurePresenter.Pres
     @Override
     public void onPressureLoaded(List<PressureIndicators> pressureList) {
         Log.d("TAG", "PressureFragmentList size is " + pressureList.size());
+
+        Collections.sort(pressureList, new Comparator<PressureIndicators>() {
+            @Override
+            public int compare(PressureIndicators o1, PressureIndicators o2) {
+                return Integer.parseInt(o1.getTime()) < Integer.parseInt(o2.getTime()) ? -1
+                        : Integer.parseInt(o1.getTime()) > Integer.parseInt(o2.getTime()) ? 1
+                        : 0;
+            }
+        });
+
         PressureIndicators currentPressure = pressureList.get(pressureList.size() - 1);
         textViewPressureValue.setText("Pressure  Value is " + currentPressure.getValue());
         setPressureTypeImage(currentPressure.getType());

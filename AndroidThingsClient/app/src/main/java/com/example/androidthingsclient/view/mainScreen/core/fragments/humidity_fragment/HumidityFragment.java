@@ -23,12 +23,15 @@ import com.airbnb.lottie.LottieAnimationView;
 import com.example.androidthingsclient.Injector;
 import com.example.androidthingsclient.R;
 import com.example.androidthingsclient.models.HumidityIndicators;
+import com.example.androidthingsclient.models.TemperatureIndicators;
 import com.example.androidthingsclient.util.DateFormatterProvider;
 import com.example.androidthingsclient.view.mainScreen.core.fragments.humidity_fragment.core.HumidityPresenter;
 
 import org.joda.time.DateTime;
 import org.joda.time.Period;
 
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -97,6 +100,16 @@ public class HumidityFragment extends Fragment implements HumidityPresenter.Humi
     @Override
     public void onHumidityLoaded(List<HumidityIndicators> humidityList) {
         Log.d("TAG", "HumidityFragmentList size is " + humidityList.size());
+
+        Collections.sort(humidityList, new Comparator<HumidityIndicators>() {
+            @Override
+            public int compare(HumidityIndicators o1, HumidityIndicators o2) {
+                return Integer.parseInt(o1.getTime()) < Integer.parseInt(o2.getTime()) ? -1
+                        : Integer.parseInt(o1.getTime()) > Integer.parseInt(o2.getTime()) ? 1
+                        : 0;
+            }
+        });
+
         HumidityIndicators currentHumidity = humidityList.get(humidityList.size() - 1);
         textViewHumidityValue.setText("Humidity  Value is " + currentHumidity.getValue() + "%");
         setHumidityTypeImage(currentHumidity.getType());

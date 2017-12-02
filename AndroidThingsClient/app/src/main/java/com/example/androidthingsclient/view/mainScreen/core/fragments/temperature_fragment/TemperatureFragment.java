@@ -31,6 +31,8 @@ import com.example.androidthingsclient.view.mainScreen.core.fragments.temperatur
 import org.joda.time.DateTime;
 import org.joda.time.Period;
 
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -104,6 +106,14 @@ public class TemperatureFragment extends Fragment implements TemperaturePresente
     @Override
     public void onTemperatureLoaded(List<TemperatureIndicators> temperatureList, boolean isSmokeExist) {
         Log.d("TAG", "TemperatureFragmentList size is " + temperatureList.size());
+        Collections.sort(temperatureList, new Comparator<TemperatureIndicators>() {
+            @Override
+            public int compare(TemperatureIndicators o1, TemperatureIndicators o2) {
+                return Integer.parseInt(o1.getTime()) < Integer.parseInt(o2.getTime()) ? -1
+                        : Integer.parseInt(o1.getTime()) > Integer.parseInt(o2.getTime()) ? 1
+                        : 0;
+            }
+        });
         TemperatureIndicators currentTemperature = temperatureList.get(temperatureList.size() - 1);
         textViewTemperatureValue.setText("Current temperature is " + currentTemperature.getValue());
         setTemperatyreTypeImage(currentTemperature.getType());
